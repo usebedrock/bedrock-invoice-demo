@@ -11,3 +11,7 @@ require('bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
 require('bootstrap-sass/assets/javascripts/bootstrap/carousel.js');
 
 require('../../core/js/index');
+
+require('./monoboot.highcharts.js');
+require('./monoboot.highcharts.theme.js');
+require('./monoboot.highcharts.popovers.js');

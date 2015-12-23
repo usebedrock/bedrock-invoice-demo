@@ -1,0 +1,11 @@
+extends form
+
+block append pageVariables
+    - var moduleTitle = "Example"
+    - var bodyClass = "modal-open"
+    - var modalIsInclude = true
+
+block modals
+
+    .modal-backdrop.fade.in
+    include ../../includes/modals/example

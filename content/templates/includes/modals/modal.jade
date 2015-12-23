@@ -1,0 +1,21 @@
+block modalVariables
+    - var modalId = "example"
+    - var modalTitle = "Example"
+    - var modalClass = "modal-lg"
+
+block modal
+    .modal.fade(tabindex='-1', role='dialog', class="#{modalIsInclude ? 'in' : ''}", style="#{modalIsInclude ? 'display:block;' : ''}" id="#{modalId}")
+        .modal-dialog(class="#{modalClass}")
+            .modal-content
+                block modalHeader
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                        h4.modal-title #{modalTitle}
+                block modalContent
+                    .modal-body
+                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                block modalFooter
+                    .modal-footer
+                        .btn.btn-link Cancel
+                        .btn.btn-primary(href="#") Save
