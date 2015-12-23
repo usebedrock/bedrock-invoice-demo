@@ -8,32 +8,21 @@ block content
     // Hidden popover content
     .hide(data-popover-html="one")
         .popover-header
-            .navbar.navbar-medium.navbar-gray-lighter
-                .navbar-left
-                    .navbar-divider
-                        .navbar-brand.navbar-brand-small Choose a country
-                .navbar-right
-                    a.btn.btn-default.navbar-btn.btn-icon(href='#', data-dismiss="popover")
-                        i.glyphicon.glyphicon-close
-        .popover-content-inner.has-sections
-            .section
-                .form-group
-                    .checkbox
-                        label
-                            input(type='checkbox')
-                            | België
-                    .checkbox
-                        label
-                            input(type='checkbox')
-                            | Nederland
-                    .checkbox
-                        label
-                            input(type='checkbox')
-                            | Frankrijk
+            .bc-navbar.bc-navbar-gray-lighter.bc-navbar-medium
+                .bc-navbar-left
+                    .bc-navbar-divider
+                        .bc-navbar-brand.bc-navbar-brand-small Popover title
+                .bc-navbar-right
+                    .bc-navbar-divider
+                        a.btn.btn-default.navbar-btn.btn-icon(href='#')
+                            i.glyphicon.glyphicon-close
+        .popover-content-inner
+            p Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
         .popover-footer
-            .navbar.navbar-medium.navbar-gray-lighter
-                .navbar-left
-                    a.btn.navbar-btn.btn-primary(href='#', data-dismiss="popover") Opslaan
+            .bc-navbar.bc-navbar-gray-lighter.bc-navbar-medium
+                .bc-navbar-left
+                    .bc-navbar-divider
+                        a.btn.navbar-btn.btn-primary(href='#', data-dismiss="popover") Save
 
     .panel.panel-default
         .panel-heading

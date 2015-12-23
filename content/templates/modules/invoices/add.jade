@@ -1,4 +1,125 @@
-extends ../../layouts/master
+extends index
 
-block body
-    p test
+block append pageVariables
+    - var pageTitle = "Add invoice"
+
+block content
+
+    .container
+        .panel.panel-default
+            .panel-body
+                form(role='form')
+                    .form-group.clearfix
+                        label.col-sm-2.control-label(for='clientId') Client ID
+                        .col-sm-10
+                            input#clientId.form-control(type='text', value='22', disabled='')
+                    .form-group.clearfix
+                        label.col-sm-2.control-label(for='inputName')
+                            | Name
+                            abbr(title='Required field') *
+                        .col-sm-10
+                            input#inputName.form-control(type='text')
+                    .form-group.clearfix
+                        label.col-sm-2.control-label(for='addInvoiceAddressStreet')
+                            | Address
+                            abbr(title='Required field') *
+                        .col-sm-10
+                            .row
+                                .col-xs-6
+                                    input.form-control(placeholder='Street')
+                                .col-xs-3
+                                    input.form-control(placeholder='Number')
+                                .col-xs-3
+                                    input.form-control(placeholder='PO Box')
+                            .row.c-spacer-top
+                                .col-xs-8
+                                    input.form-control(placeholder='City')
+                                .col-xs-4
+                                    input.form-control(placeholder='Postal code')
+                            .row.c-spacer-top
+                                .col-xs-12
+                                    input.form-control(placeholder='State/Province')
+                    .form-group.clearfix
+                        label.col-sm-2.control-label(for='inputCountry')
+                            | Country
+                            abbr(title='Required field') *
+                        .col-sm-10
+                            select#inputCountry.form-control
+                                option(selected='true', value='BE') Belgium
+                                option(value='US') United States
+                                option(value='UK') United Kingdom
+                                option(value='FR') France
+                    .form-group.clearfix
+                        label.col-sm-2.control-label(for='addInvoiceVat')
+                            | VAT no.
+                            abbr(title='Required field') *
+                        .col-sm-10
+                            input#addInvoiceVat.form-control(placeholder='BE123 4544 11444')
+        .panel.panel-default.panel-minimal
+            .panel-body
+                a.btn.pull-left(href='/clients.html') Cancel
+                .btn-toolbar.pull-right(role='toolbar')
+                    a.btn.btn-success(href='/clients.html') Save
+
+    // Modal for add client
+    #add-client.modal.fade.in
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                    h4.modal-title New client
+                .modal-body.has-sections
+                    section
+                        form(role='form')
+                            .form-group.clearfix
+                                label.col-sm-2.control-label(for='clientId') Client ID
+                                .col-sm-10
+                                    input#clientId.form-control(type='text', value='22', disabled='')
+                            .form-group.clearfix
+                                label.col-sm-2.control-label(for='inputName')
+                                    | Name
+                                    abbr(title='Required field') *
+                                .col-sm-10
+                                    input#inputName.form-control(type='text')
+                            .form-group.clearfix
+                                label.col-sm-2.control-label(for='addInvoiceAddressStreet')
+                                    | Address
+                                    abbr(title='Required field') *
+                                .col-sm-10
+                                    .row
+                                        .col-xs-6
+                                            input.form-control(placeholder='Street')
+                                        .col-xs-3
+                                            input.form-control(placeholder='Number')
+                                        .col-xs-3
+                                            input.form-control(placeholder='PO Box')
+                                    .row.c-spacer-top
+                                        .col-xs-8
+                                            input.form-control(placeholder='City')
+                                        .col-xs-4
+                                            input.form-control(placeholder='Postal code')
+                                    .row.c-spacer-top
+                                        .col-xs-12
+                                            input.form-control(placeholder='State/Province')
+                            .form-group.clearfix
+                                label.col-sm-2.control-label(for='inputCountry')
+                                    | Country
+                                    abbr(title='Required field') *
+                                .col-sm-10
+                                    select#inputCountry.form-control
+                                        option(selected='true', value='BE') Belgium
+                                        option(value='US') United States
+                                        option(value='UK') United Kingdom
+                                        option(value='FR') France
+                            .form-group.clearfix
+                                label.col-sm-2.control-label(for='addInvoiceVat')
+                                    | VAT no.
+                                    abbr(title='Required field') *
+                                .col-sm-10
+                                    input#addInvoiceVat.form-control(placeholder='BE123 4544 11444')
+                // .modal-body
+                .modal-footer
+                    a.btn-link.pull-left(href='#', data-dismiss='modal') Cancel
+                    a.btn.btn-success.pull-right(href='#', data-dismiss='modal')
+                        span.glyphicon.glyphicon-plus-sign
+                        |    Add client

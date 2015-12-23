@@ -1,3 +1,5 @@
+const Highcharts = require('highcharts');
+
 /**
  * Monoboot theme for Highcharts JS
  * General theme applied to all charts

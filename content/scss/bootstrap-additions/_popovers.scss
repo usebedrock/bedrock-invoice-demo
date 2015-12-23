@@ -1,0 +1,32 @@
+/* ==========================================================================
+  Additions to bootstrap/popovers
+   ========================================================================== */
+
+/* Popover content/content with sections
+   ========================================================================== */
+
+.popover-content {
+  padding: 0; // @todo this breaks Bootstrap default, fix "our" popover so a "padding: 0;" style gets added
+}
+
+.popover-content-inner {
+  padding: $grid-gutter-width/2;
+}
+
+/* Color fixes to arrows
+   ========================================================================== */
+
+.popover.bottom > .arrow {
+  border-bottom-color: $popover-border-color;
+  &:after {
+    border-bottom-color: $gray-light;
+    top: 2px;
+  }
+}
+
+.popover.top > .arrow {
+  border-top-color: $popover-border-color;
+  &:after {
+    border-top-color: $gray-light;
+  }
+}

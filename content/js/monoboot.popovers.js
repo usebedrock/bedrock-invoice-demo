@@ -3,7 +3,6 @@
   @1.0.0
    ========================================================================== */
 
-alert('hi');
 /* Dynamic popover placement
    ========================================================================== */
 
@@ -48,60 +47,63 @@ $.fn.popover.Constructor.prototype.show = function() {
 /* Initialize popovers
    ========================================================================== */
 
-var isPopoverVisible = false;
+$(function() {
 
-var hideAllPopovers = function() {
-   $('.popover').each(function() {
-        $('[data-popover-ref]').popover('hide');
-    });  
-};
+    var isPopoverVisible = false;
 
-$('[data-popover-ref]').click(function(e) {
-  e.preventDefault();
-});
+    var hideAllPopovers = function() {
+       $('.popover').each(function() {
+            $('[data-popover-ref]').popover('hide');
+        });  
+    };
+    
+    $('[data-popover-ref]').click(function(e) {
+      e.preventDefault();
+    });
 
-$('[data-popover-ref]').popover({
-    trigger : 'manual',
-    placement : getPopoverPlacement,
-    container: 'body',
-    html : true,
-    content: function() {
-      var foundHtml = $('[data-popover-html="' + $(this).attr('data-popover-ref') + '"]').html();
-      return foundHtml;
-    },
-    template: '<div class="popover"><div class="arrow"></div><div class="popover-content"></div></div>',
-    showCallback: function() {
-      initSelect2();
-      initPopoverEvents();
-    }
-}).on('click', function(e) {
+    $('[data-popover-ref]').popover({
+        trigger : 'manual',
+        placement : getPopoverPlacement,
+        container: 'body',
+        html : true,
+        content: function() {
+          var foundHtml = $('[data-popover-html="' + $(this).attr('data-popover-ref') + '"]').html();
+          return foundHtml;
+        },
+        template: '<div class="popover"><div class="arrow"></div><div class="popover-content"></div></div>',
+        showCallback: function() {
+          initPopoverEvents();
+        }
+    }).on('click', function(e) {
 
-    // If any other popovers are visible, hide them
-    if(isPopoverVisible) {
+        // If any other popovers are visible, hide them
+        if(isPopoverVisible) {
+            hideAllPopovers();
+        }
+
+        // Show our popover
+        $(this).popover('show');
+
+        // Handle clicking on the popover itself
+        $('.popover').off('click').on('click', function(e) {
+            e.stopPropagation(); // prevent event for bubbling up => will not get caught with document.onclick
+        });
+
+        // Close button inside popover
+        $('[data-dismiss="popover"]').click(function() {
+          hideAllPopovers();
+        });
+
+        isPopoverVisible = true;
+        e.stopPropagation();
+
+    })
+
+    $(document).on('click', function(e) {
         hideAllPopovers();
-    }
-
-    // Show our popover
-    $(this).popover('show');
-
-    // Handle clicking on the popover itself
-    $('.popover').off('click').on('click', function(e) {
-        e.stopPropagation(); // prevent event for bubbling up => will not get caught with document.onclick
+        isPopoverVisible = false;
     });
 
-    // Close button inside popover
-    $('[data-dismiss="popover"]').click(function() {
-      hideAllPopovers();
-    });
-
-    isPopoverVisible = true;
-    e.stopPropagation();
-
-})
-
-$(document).on('click', function(e) {
-    hideAllPopovers();
-    isPopoverVisible = false;
 });
 
 function initPopoverEvents() {
@@ -116,8 +118,6 @@ function initPopoverEvents() {
     console.log('Adding row');
     $(this).parents('.popover')
       .find('.hide').removeClass('hide');
-
-    initSelect2DynamicAdd();
   
     $(this).parents('.popover')
       .find('.table').find('tr:first input').val('04:00');
