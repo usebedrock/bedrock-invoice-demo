@@ -1,0 +1,110 @@
+/* ==========================================================================
+  Spinner
+   ========================================================================== */
+
+/* Variables
+   ========================================================================== */
+
+// size of small spinner
+$bc-spinner-size: 12px;
+
+// size of big spinner
+$bc-spinner-big-size: 32px;
+
+// border size of small spinner
+$bc-spinner-border-size: 2px;
+
+// border size of big spinner
+$bc-spinner-big-border-size: 6px;
+
+@keyframes rotation {
+   from { transform: rotate(0deg); }
+   to { transform: rotate(359deg); }
+}
+
+/* Component
+   ========================================================================== */
+
+.bc-spinner {
+  // Make sure we use content box model for this
+  &, &:before, &:after {
+    box-sizing: content-box !important;
+  }
+  height: $bc-spinner-size;
+  width: $bc-spinner-size;
+  display: inline-block;
+  position:relative;
+  animation: rotation 1s infinite linear;
+  border: $bc-spinner-border-size solid lighten($brand-primary,25%);
+  border-radius: 100%;
+  &:before {
+     content:"";
+     display:block;
+     position:absolute;
+     left: -$bc-spinner-border-size;
+     top: -$bc-spinner-border-size;
+     height: 100%;
+     width: 100%;
+     border-top: $bc-spinner-border-size solid $brand-primary;
+     border-left: $bc-spinner-border-size solid transparent;
+     border-bottom: $bc-spinner-border-size solid transparent;
+     border-right: $bc-spinner-border-size solid transparent;
+     border-radius: 100%;
+  }
+}
+
+.bc-spinner-big {
+  height: $bc-spinner-big-size;
+  width: $bc-spinner-big-size;
+  border: $bc-spinner-big-border-size solid lighten($brand-primary,25%);
+  &:before {
+     left:-$bc-spinner-big-border-size;
+     top:-$bc-spinner-big-border-size;
+     border-top: $bc-spinner-big-border-size solid $brand-primary;
+     border-left: $bc-spinner-big-border-size solid transparent;
+     border-bottom: $bc-spinner-big-border-size solid transparent;
+     border-right: $bc-spinner-big-border-size solid transparent;
+  }
+}
+
+/* When buttons meet spinners 
+   ========================================================================== */
+
+.btn-default .bc-spinner {
+  border-color: rgba(0,0,0,0.33);
+  &:before {
+    border-top-color: $gray-dark;
+  }
+}
+
+.btn-primary .bc-spinner,
+.btn-danger .bc-spinner,
+.btn-warning .bc-spinner,
+.btn-success .bc-spinner {
+  border-color: rgba(255,255,255,0.33);
+  &:before {
+    border-top-color: #FFF;
+  }
+}
+
+// Small spinner + message
+
+.bc-spinner-message-holder {
+  .bc-spinner {
+    float: left;
+    margin-right: 4px;
+    position: relative;
+    top: 2px;
+  }
+}
+
+// Small spinner + message
+
+.bc-spinner-message-holder-centered {
+  margin: 20px;
+  text-align: center;
+  color: $text-muted;
+  .bc-spinner {
+    margin-top: 2px;
+  }
+}

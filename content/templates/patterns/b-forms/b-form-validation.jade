@@ -1,0 +1,14 @@
+form(role="form")
+    .alert.alert-danger
+        p Please correct the marked fields.
+    .form-group
+        label.control-label Field name
+        input.form-control(type='text')
+    .form-group.has-error
+        label.control-label Field name
+        select.form-control
+            option Option A
+            option Option B
+            option Option C
+        p.help-block Specific message about this field.
+    a.btn.btn-primary(href='#') Save

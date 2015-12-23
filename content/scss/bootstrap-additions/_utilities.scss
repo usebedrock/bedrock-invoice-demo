@@ -1,0 +1,27 @@
+/* ==========================================================================
+  Additions to bootstrap/utilities
+   ========================================================================== */
+
+.is-block {
+  display: block;
+}
+
+.is-inline-block {
+  display: inline-block;
+}
+
+.is-scrollable {
+  overflow: scroll;
+}
+
+@media (min-width: $screen-sm) {
+
+  .is-scrollable-sm {
+    overflow: scroll;
+  }
+
+}
+
+.m0 {
+  margin: 0 !important;
+}

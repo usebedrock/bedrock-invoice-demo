@@ -1,0 +1,317 @@
+/* ==========================================================================
+   bc-navbar
+   Navigation bar that can be:
+    * Static, containing controls
+    * Fixed, with a scrollable area below it (in combination with .bc-container)
+   ========================================================================== */
+
+/* Variables
+   ========================================================================== */
+
+$bc-navbar-small-height:                          32px !default;
+$bc-navbar-height:                                50px !default;
+$bc-navbar-large-height:                          78px !default;
+$bc-navbar-divider-border-color:                  $gray-light !default;
+$bc-navbar-btn-stretch-hover-bg:                  $gray-light !default;
+$bc-navbar-shadow-strength:                       0.3 !default;
+$bc-navbar-shadow-bg-color:                       $gray-base !default;
+
+/* Mixins
+   ========================================================================== */
+
+@mixin bc-navbar-variant($bg,$border) {
+  background-color: $bg;
+  border-color: $border;
+  .bc-navbar-divider-bordered {
+    border-color: $border;
+  }
+}
+
+/* ==========================================================================
+   Navbars
+   ========================================================================== */
+
+.bc-navbar {
+  position: relative;
+  min-height: $bc-navbar-height; // Ensure a navbar always shows (e.g., without a .bc-navbar-brand in collapsed mode)
+
+  // Prevent floats from breaking the navbar
+  @include clearfix();
+
+  > .bc-navbar-left {
+    margin-left: $grid-gutter-width / 2;
+    float: left;
+  }
+  > .bc-navbar-right {
+    margin-right: $grid-gutter-width / 2;
+    float: right;
+  }
+}
+
+.bc-navbar-small {
+  min-height: $bc-navbar-small-height;
+}
+
+.bc-navbar-medium {
+  min-height: $bc-navbar-height;
+}
+
+.bc-navbar-large {
+  min-height: $bc-navbar-large-height;
+}
+
+.bc-navbar-fixed-top,
+.bc-navbar-fixed-bottom {
+  position: absolute;
+  width: 100%;
+}
+.bc-navbar-fixed-top {
+  box-shadow: 0 0 3px rgba($bc-navbar-shadow-bg-color,$bc-navbar-shadow-strength);
+  top: 0;
+}
+
+.bc-navbar-fixed-bottom {
+  box-shadow: 0 0 3px rgba($bc-navbar-shadow-bg-color,$bc-navbar-shadow-strength);
+  bottom: 0;
+}
+
+.bc-navbar-top {
+  border-bottom: 1px solid $gray-light;
+}
+
+.bc-navbar-bottom {
+  border-top: 1px solid $gray-light;
+}
+
+/* Element positioning (vertical)
+   ========================================================================== */
+
+// Element positioning in small navbars (vertical)
+
+.bc-navbar-small {
+  .btn-xs {
+    margin-top: 5px;
+  }
+  .bc-navbar-text {
+    margin-top: 6px;
+    font-size: 12px;
+  }
+}
+
+.bc-navbar.bc-navbar-small .bc-navbar-divider {
+  margin-top: 0;
+}
+
+// Element positioning in normal and large navbars
+
+.bc-navbar-medium {
+
+  .bc-breadcrumbs {
+    margin-top: 7px;
+  }
+
+  .btn {
+    margin-top: 8.5px;
+  }
+  
+  .btn-xs {
+    margin-top: 11px;
+  }
+  
+  .form-control[type="text"] {
+    margin-top: 9px;
+  }
+
+  .nav-pills {
+    margin-top: 6px;
+  }
+
+  .nav-tabs {
+    margin-top: 8.5px;
+  }
+
+  .form-inline {
+    padding-top: 8px;
+  }
+
+  .dropdown .btn {
+    margin-top: 8.5px;
+  }
+
+}
+
+.bc-navbar-large {
+  .btn {
+    margin-top: 5.5px;
+  }
+}
+
+// Element positioning in large navbars (vertical)
+
+.bc-navbar.bc-navbar-large {
+  height: $bc-navbar-large-height;
+}
+
+.bc-navbar.bc-navbar-large .bc-navbar-divider {
+  margin-top: 14px;
+}
+
+.bc-navbar.bc-navbar-large .bc-navbar-divider-no-spacing {
+  margin-top: 0;
+}
+
+/* Component alignment
+   ========================================================================== */
+
+.bc-navbar-left {
+  float: left !important;
+  max-height: ($bc-navbar-height - 1px); // stability fix
+}
+
+.bc-navbar-right {
+  float: right !important;
+  max-height: ($bc-navbar-height - 1px); // stability fix
+}
+
+/* Divide navbars
+   ========================================================================== */
+
+.bc-navbar-divider {
+  &:first-child {
+    margin-left: 0;
+  }
+  float: left;
+  margin-left: $grid-gutter-width/2;
+  .bc-navbar-medium & {
+    height: $bc-navbar-height;
+  }
+  .bc-navbar-small & {
+    height: $bc-navbar-small-height;
+  }
+}
+
+// Bordered means there is a single border
+.bc-navbar-divider-bordered {
+  padding-left: $grid-gutter-width/2;
+  border-left: 1px solid $bc-navbar-divider-border-color;
+  &:first-child {
+    padding: 0;
+    border: none;
+  }
+}
+
+// Extra bordered means there is an extra border on the other side as well
+.bc-navbar-divider-extra-bordered {
+  border-right: 1px solid $bc-navbar-divider-border-color;
+  padding-right: $grid-gutter-width/2;
+  &:last-child {
+    // Repeat for specificity
+    border-right: 1px solid $bc-navbar-divider-border-color;
+  }
+}
+
+.bc-navbar-right {
+  .bc-navbar-divider {
+    &:last-child {
+      margin-right: 0;
+    }
+    // Reset above
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: $grid-gutter-width/2;
+    border-left: none;
+    // Bordered means there is a single border
+    &.bordered {
+      padding-right: $grid-gutter-width/2;
+      border-right: 1px solid $bc-navbar-divider-border-color;
+      &:last-child {
+        padding: 0;
+        border: none;
+      }
+    }
+    // Extra bordered means there is an extra border on the other side as well
+    &.extra-bordered {
+      border-left: 1px solid $bc-navbar-divider-border-color;
+      padding-left: $grid-gutter-width/2;
+      &:last-child {
+        // Repeat for specificity
+        border-left: 1px solid $bc-navbar-divider-border-color;
+      }
+    }
+  }
+}
+
+.bc-navbar > .bc-navbar-right-no-spacing {
+  margin: 0;
+}
+
+.bc-navbar > .bc-navbar-left-no-spacing {
+  margin: 0;
+}
+
+.bc-navbar.bc-navbar .bc-navbar-divider-no-spacing { // Stupid trick to get more specifity
+  padding: 0;
+}
+
+.bc-navbar.bc-navbar .bc-navbar-divider-no-spacing-half { // Stupid trick to get more specifity
+  margin: 0;
+}
+
+.bc-navbar > .bc-navbar-left .bc-navbar-divider-little-spacing {
+  margin-left: 5px;
+}
+
+.bc-navbar > .bc-navbar-right .bc-navbar-divider-little-spacing {
+  margin-right: 5px;
+}
+
+/* Navbar button that stretches across whole navbar
+   ========================================================================== */
+
+.bc-navbar-btn-stretch {
+  text-decoration: none;
+  color: $gray-dark;
+  padding-left: $grid-gutter-width/2;
+  padding-right: $grid-gutter-width/2;
+  display: block;
+  text-decoration: none;
+  .bc-navbar & {
+    padding-top: 14px;
+    height: ($bc-navbar-height - 1px);
+    max-height: ($bc-navbar-height - 1px);
+  }
+  .bc-navbar-small & {
+    padding-top: 7px;
+    height: ($bc-navbar-small-height - 1px);
+    max-height: ($bc-navbar-small-height - 1px);
+  }
+  &:hover,
+  &:active,
+  &:focus,
+  &.active {
+    text-decoration: none;
+    background: $bc-navbar-btn-stretch-hover-bg;
+  }
+  .glyphicon {
+    float: left;
+    margin: 0 4px 0 0;
+  }
+}
+
+// Navbar skins here
+
+/* Navbar variants
+  @mixin bc-navbar-variant($bg,$border)
+   ========================================================================== */
+
+.bc-navbar-white {
+  @include bc-navbar-variant($white,$gray-light);
+}
+
+.bc-navbar-gray-light {
+  @include bc-navbar-variant($gray-light,darken($gray-light, 10%));
+}
+
+.bc-navbar-gray-dark {
+  @include bc-navbar-variant($gray-dark,darken($gray-dark, 10%));
+}

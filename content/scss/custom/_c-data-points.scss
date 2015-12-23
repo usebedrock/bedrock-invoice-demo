@@ -1,0 +1,18 @@
+.c-data-points {
+  display: flex;
+  flex-wrap: wrap;
+
+  .c-data-point {
+    width: 33.333%;
+    padding: 20px;
+  }
+
+  .c-data-point-name {
+    font-size: 14px;
+  }
+
+  .c-data-point-value {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}

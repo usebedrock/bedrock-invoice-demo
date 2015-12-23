@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Modals
+   ========================================================================== */
+
+.modal-body + .modal-body {
+  border-top: 1px solid $gray-light;
+}
+
+.modal-body-bg-alt {
+  background: $gray-lighter;
+}
+
+.modal-title {
+  font-size: $font-size-h3;
+}

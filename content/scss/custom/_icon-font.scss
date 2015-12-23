@@ -1,0 +1,83 @@
+/*
+  Icon Font: icon-font
+*/
+
+@font-face {
+  font-family: "icon-font";
+  src: url("/fonts/icon-font.eot");
+  src: url("/fonts/icon-font.eot?#iefix") format("embedded-opentype"),
+       url("/fonts/icon-font.woff") format("woff"),
+       url("/fonts/icon-font.ttf") format("truetype"),
+       url("/fonts/icon-font.svg#icon-font") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "icon-font";
+    src: url("/fonts/icon-font.svg#icon-font") format("svg");
+  }
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.glyphicon-add:before,
+.glyphicon-admin:before,
+.glyphicon-arrow-down:before,
+.glyphicon-arrow-left:before,
+.glyphicon-arrow-right:before,
+.glyphicon-bold:before,
+.glyphicon-check:before,
+.glyphicon-close:before,
+.glyphicon-cloud-download:before,
+.glyphicon-collapsed:before,
+.glyphicon-duplicate:before,
+.glyphicon-edit:before,
+.glyphicon-expanded:before,
+.glyphicon-help:before,
+.glyphicon-italic:before,
+.glyphicon-link:before,
+.glyphicon-logout:before,
+.glyphicon-notifications:before,
+.glyphicon-search:before,
+.glyphicon-time:before,
+.glyphicon-trash:before,
+.glyphicon-upload:before {
+  display: inline-block;
+  font-family: "icon-font";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.glyphicon-add:before { content: "\f100"; }
+.glyphicon-admin:before { content: "\f101"; }
+.glyphicon-arrow-down:before { content: "\f102"; }
+.glyphicon-arrow-left:before { content: "\f103"; }
+.glyphicon-arrow-right:before { content: "\f104"; }
+.glyphicon-bold:before { content: "\f105"; }
+.glyphicon-check:before { content: "\f106"; }
+.glyphicon-close:before { content: "\f107"; }
+.glyphicon-cloud-download:before { content: "\f108"; }
+.glyphicon-collapsed:before { content: "\f109"; }
+.glyphicon-duplicate:before { content: "\f10a"; }
+.glyphicon-edit:before { content: "\f10b"; }
+.glyphicon-expanded:before { content: "\f10c"; }
+.glyphicon-help:before { content: "\f10d"; }
+.glyphicon-italic:before { content: "\f10e"; }
+.glyphicon-link:before { content: "\f10f"; }
+.glyphicon-logout:before { content: "\f110"; }
+.glyphicon-notifications:before { content: "\f111"; }
+.glyphicon-search:before { content: "\f112"; }
+.glyphicon-time:before { content: "\f113"; }
+.glyphicon-trash:before { content: "\f114"; }
+.glyphicon-upload:before { content: "\f115"; }

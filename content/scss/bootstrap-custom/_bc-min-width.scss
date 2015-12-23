@@ -1,0 +1,11 @@
+/* ==========================================================================
+  bc-min-width
+  Introduce min widths (at certain breakpoints)
+  Meant to be used in conjunction with flexbox
+   ========================================================================== */
+
+@media (min-width: $screen-md) {
+  .bc-min-width-screen-at-md {
+    min-width: $screen-md;
+  }  
+}

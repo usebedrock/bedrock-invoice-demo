@@ -1,0 +1,129 @@
+/* ==========================================================================
+  bc-container 
+
+  Container that works together with navbar component to create areas in
+  which fixed navbars can be positioned with a clearly defined scrollable area.
+
+   ========================================================================== */
+
+/* Variables 
+   ========================================================================== */
+
+$bc-container-grid-gutter-width:              20px !default;
+$bc-navbar-small-height:                      32px !default;
+$bc-navbar-height:                            50px !default;
+$bc-navbar-large-height:                      72px !default;
+
+/* Content layouts
+   ========================================================================== */
+
+.bc-container-content-layout-default {
+  padding: $bc-container-grid-gutter-width 0;
+  height: calc(100% - #{$bc-container-grid-gutter-width*2});
+}
+
+.bc-container-content-layout-fullscreen {
+  padding: 0;
+  height: 100%;
+}
+
+/* Calculate scrollable areas for different navbar layouts
+   ========================================================================== */
+
+.bc-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bc-container-content {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.bc-container-content.bc-container-content-has-navbar-bottom-medium {
+  bottom: 50px  !important;
+  height: calc(100% - 100px) !important;
+}
+
+.bc-container > .bc-navbar-fixed-top {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+// Calculations for navbar positions
+
+.bc-container > .bc-navbar-small + .bc-navbar {
+  top: $bc-navbar-small-height;
+}
+
+.bc-container > .bc-navbar-medium + .bc-navbar {
+  top: $bc-navbar-height;
+}
+
+.bc-container > .bc-navbar-medium + .bc-navbar-medium + .bc-navbar {
+  top: $bc-navbar-height + $bc-navbar-height;
+}
+
+.bc-container > .bc-navbar-small + .bc-navbar-medium + .bc-navbar {
+  top: $bc-navbar-small-height + $bc-navbar-height;
+}
+
+// Calculations for scrollable content area positions
+
+// 1 medium bar
+.bc-container > .bc-navbar-medium + .bc-container-content {
+  top: $bc-navbar-height;
+  height: calc(100% - #{$bc-navbar-height});
+}
+
+// 1 medium bar + 1 small bar
+.bc-container > .bc-navbar-medium + .bc-navbar-small + .bc-container-content {
+  top: $bc-navbar-height + $bc-navbar-small-height;
+  height: calc(100% - #{$bc-navbar-height + $bc-navbar-small-height});
+}
+
+// 1 medium bar + 1 large bar
+.bc-container > .bc-navbar-medium + .bc-navbar-large + .bc-container-content {
+  top: $bc-navbar-height + $bc-navbar-large-height;
+  height: calc(100% - #{$bc-navbar-height + $bc-navbar-large-height});
+}
+
+// 1 small bar + 1 medium bar
+.bc-container > .bc-navbar-small + .bc-navbar-medium + .bc-container-content {
+  top: $bc-navbar-small-height + $bc-navbar-height;
+  height: calc(100% - #{$bc-navbar-small-height + $bc-navbar-height});
+}
+
+// 2 medium bars
+.bc-container > .bc-navbar-medium + .bc-navbar-medium + .bc-container-content {
+  top: $bc-navbar-height + $bc-navbar-height;
+  height: calc(100% - #{$bc-navbar-height*2});
+}
+
+// 2 medium bars + 1 small bar
+.bc-container > .bc-navbar-medium + .bc-navbar-medium + .bc-navbar-small + .bc-container-content {
+  top: $bc-navbar-height + $bc-navbar-height + $bc-navbar-small-height;
+  height: calc(100% - #{$bc-navbar-height + $bc-navbar-height + $bc-navbar-small-height});
+}
+
+// 1 navbar, large size
+.bc-container > .bc-navbar-large + .bc-container-content {
+  top: $bc-navbar-large-height;
+}
+
+/* Z-indexes 
+   ========================================================================== */
+
+.bc-container > .bc-navbar:nth-child(1) {
+  z-index: 4;
+}
+
+.bc-container > .bc-navbar:nth-child(2) {
+  z-index: 3;
+}

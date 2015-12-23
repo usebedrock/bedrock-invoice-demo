@@ -1,0 +1,47 @@
+/* Gear header (select)
+   ========================================================================== */
+
+.bc-gear-header {
+  @include clearfix;
+  .bc-gear-header-image { // div, contains image
+    margin-top: 10px;
+    width: 40px;
+    float: left;
+    margin-right: 10px;
+    img {
+      width: 40px;
+    }
+  }
+  .bc-gear-header-text {
+    float: left;
+  }
+  .bc-gear-header-text-line-1 {
+    font-size: 11px;
+    opacity: 0.5;
+  }
+  .bc-gear-header-text-line-2 {
+    font-size: 15px;
+    font-weight: $headings-font-weight;
+  }
+  .bc-navbar & {
+    margin-top: 8px;
+  }
+}
+
+.bc-gear-header-interactive {
+  position: relative;
+  bottom: 2px;
+  > .dropdown > a {
+    padding: 2px;
+    border-radius: 4px;
+    @include clearfix;
+    display: block;
+    color: $gray-dark;
+    &:hover {
+      background: rgba(0,0,0,0.1);
+    }
+    > .caret {
+      margin: 9px 4px 0 5px;
+    }
+  }
+}

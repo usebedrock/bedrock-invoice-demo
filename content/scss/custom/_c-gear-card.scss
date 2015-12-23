@@ -1,0 +1,54 @@
+.c-gear-stats {
+  @extend .panel;
+  @extend .panel-default;
+  display: flex;
+  color: $gray;
+
+  .c-gear-stats-info {
+    flex: 1;
+  }
+
+  .c-gear-stats-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+
+    .c-gear-stats-icon {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+
+      img {
+        height: 24px;
+      }
+    }
+
+    .c-gear-stats-info-main {
+
+    }
+
+    .c-gear-stats-info-title {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    .c-gear-stats-info-subtitle {
+      font-size: 16px;
+    }
+
+    .c-gear-stats-info-secondary {
+      flex: 1;
+      text-align: right;
+      align-self: flex-end;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .c-gear-stats-visual {
+    min-height: 250px;
+  }
+}

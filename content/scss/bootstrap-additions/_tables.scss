@@ -1,0 +1,88 @@
+/* ==========================================================================
+  Additions to bootstrap/table
+   ========================================================================== */
+
+/* Background
+   ========================================================================== */
+
+.table {
+  thead {
+    tr {
+      th {
+        border-bottom: 2px solid $gray-light;
+      }
+    }
+  }
+}
+
+/* White cells
+   ========================================================================== */
+
+.table.table-cells-white {
+  tbody {
+    tr {
+      td {
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+/* Align middle
+   ========================================================================== */
+
+.table.table-align-middle {
+  td {
+    vertical-align: middle;
+  }
+}
+
+/* Specific columns
+   ========================================================================== */
+
+.table-actions-column .btn-toolbar {
+  float: right;
+}
+
+.table-actions-column .btn-toolbar-min-width-2-buttons {
+  min-width: 74px;
+}
+
+/* No first border on first row
+   ========================================================================== */
+
+.table.table-no-first-border {
+  tr:first-child td,
+  tr:first-child th {
+    border-top: none;
+  }
+}
+
+/* Tables where the left side is the "label"
+   ========================================================================== */
+
+.table-left-labels {
+  tbody th {
+    width: 100px;
+  }
+}
+
+.table-left-labels-medium {
+  tbody th {
+    width: 150px;
+  }
+}
+
+.table-left-labels-long {
+  tbody th {
+    width: 200px;
+  }
+}
+
+/* Mini column for avatars
+   ========================================================================== */
+
+.table tbody td.mini-column {
+  width: 1px;
+  padding-right: 0;
+}

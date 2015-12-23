@@ -1,0 +1,220 @@
+/* ==========================================================================
+  Additions to bootstrap/buttons
+   ========================================================================== */
+
+// Make sure buttons don't get higher when an icon is inside them
+.btn {
+  max-height: 32px;
+  &.auto-height {
+    max-height: none;
+  }
+}
+
+// Larger icons by default
+.btn .glyphicon:before {
+  font-size: 16px;
+  position: relative;
+  bottom: 1px;
+}
+
+// Not in small buttons or when specified explicitly
+.btn-xs .glyphicon:before,
+.btn-icon-sm .glyphicon:before {
+  font-size: 13px;
+  position: relative;
+  top: 0;
+}
+
+// Make buttons with icons look good again
+.btn .glyphicon {
+  float: left;
+  margin: 2px 4px 0 0;
+}
+
+.btn.btn-icon-right .glyphicon {
+  float: right;
+  margin: 2px 0 0 2px;
+}
+
+.btn-xs .glyphicon {
+  margin: 0 4px 0 0;
+}
+
+.btn-xs.btn-icon-right .glyphicon {
+  margin: 0 0 0 4px;
+}
+
+/* Icon buttons
+   ========================================================================== */
+
+.btn-icon {
+  padding: 0;
+  line-height: 32px;
+  text-align: center;
+  height: 32px;
+  // Make buttons with only an icon more square
+  min-width: 32px; // for flexbox context
+  max-width: 32px;
+  .glyphicon {
+    margin: 1px 0 0 7px;
+    max-height: 28px;
+  }
+  &.btn-xs {
+    height: 24px;
+    // Make buttons with only an icon more square
+    min-width: 24px; // for flexbox context
+    max-width: 24px;
+    line-height: 24px;
+    padding: 0;
+    .glyphicon {
+      margin: 0 0 0 4px;
+    }
+  }
+  img {
+    width: 16px;
+    height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    margin: 0 auto;
+    display: inline-block;
+  }
+}
+
+/* Buttons with svg icons in them (as svg tag)
+   ========================================================================== */
+
+// This is for aligning an icon containg an <svg> element or img as svg
+.btn {
+  svg {
+    position: relative;
+    top: 2px;
+    margin-bottom: -2px;
+  }
+  img {
+    position: relative;
+    bottom: 1px;
+  }
+}
+
+/*  Buttons with svg icons in them (as svg background, 16px by 16px)
+   ========================================================================== */
+
+.btn-svg-icon {
+  padding: 0 $padding-base-horizontal;
+  overflow: hidden; // clearfix
+  [class^="icon-"],
+  [class*=" icon-"] {
+    width: 16px;
+    height: 16px;
+    margin-top: 8px;
+    margin-right: 2px;
+  }
+  [class^="icon-"],
+  [class*=" icon-"],
+  .label {
+    display: block;
+    float: left;
+    line-height: 32px;
+  }
+  &.btn-icon {
+    [class^="icon-"],
+    [class*=" icon-"] {
+      // offset to make it look good
+      position: relative;
+      right: 2px;
+    }
+  }
+}
+
+/* Ghost buttons
+   ========================================================================== */
+
+.btn-ghost {
+  color: $gray-dark;
+  background: transparent;
+  border-color: rgba($gray-dark,0.25);
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: rgba($gray-dark,0.75);
+    background-color: rgba($gray-dark,0.05);
+    border-color: rgba($gray-dark,0.25);
+  }
+  .open & {
+    &.dropdown-toggle {
+      color: rgba($gray-dark,0.75);
+      background-color: rgba($gray-dark,0.15);
+      border-color: rgba($gray-dark,0.35);
+    }
+  }
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: transparent;
+      border-color: rgba($gray-dark,0.1);
+    }
+  }
+}
+
+/* Link buttons
+   ========================================================================== */
+
+.btn-link {
+  color: $brand-primary;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    text-decoration: none;
+    color: darken($brand-primary, 10%);
+  }
+}
+
+/* Loading buttons
+   Dependencies: _spinner.scss (custom)
+   ========================================================================== */
+
+.btn-loading {
+  content: " ";
+  position: relative;
+  // Don't allow mouse events
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.btn-loading:not(.btn-icon) {
+  padding-left: 28px;
+}
+
+.btn-loading .bc-spinner {
+  content: " ";
+  margin: 0 auto;
+  position: absolute;
+  top: 7px;
+  left: 7px;
+}
+
+.btn-icon-right.btn-loading:not(.btn-icon) {
+  padding-left: $padding-base-horizontal;
+  padding-right: 28px;
+}
+
+.btn-icon-right.btn-loading .bc-spinner {
+  top: 7px;
+  right: 7px;
+  left: auto;
+}
+
+/* Button block additions 
+   ========================================================================== */
+
+.btn-block-left {
+  text-align: left;
+}

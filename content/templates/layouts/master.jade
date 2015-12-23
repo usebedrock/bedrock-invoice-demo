@@ -1,0 +1,30 @@
+doctype html
+html.c-util-maximize-height.c-util-disable-scroll(lang='en')
+    block pagevariables
+        // Use this block to append page variables in templates
+        - var projectTitle = "Project title"
+        - var moduleTitle = "Module"
+    head
+        meta(charset='UTF-8')
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+
+        title
+            if moduletitle
+                | #{moduleTitle} -
+                | #{projectTitle}
+            else
+                | #{projectTitle}
+
+        link(rel='stylesheet', href='/css/main.css')
+        link(rel='stylesheet', href='/css/prototype.css')
+        script(src='/js/modernizr.js')
+
+body.c-util-maximize-height.c-util-disable-scroll(class="#{bodyClass ? bodyClass : ''}")
+
+    block body
+
+    include ../../../core/templates/includes/prototype-nav
+
+    = "\n"
+    script(src='/js/bundle.js')

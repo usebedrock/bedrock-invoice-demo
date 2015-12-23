@@ -1,0 +1,81 @@
+// Default template, has navbars
+
+extends master
+
+block append pagevariables
+    - var navbarTopPrimary = true
+    - var navbarTopSecondary = true
+    - var navbarTopPrimaryClass = "bc-navbar bc-navbar-medium bc-navbar-gray-dark bc-navbar-fixed-top"
+    - var navbarTopSecondaryClass = "bc-navbar bc-navbar-medium bc-navbar-gray-light bc-navbar-fixed-top"
+
+block body
+    .bc-container.c-util-maximize-height
+        if navbarTopPrimary
+            header.bc-navbar(class="#{navbarTopPrimaryClass || 'bc-navbar-medium bc-navbar-fixed-top'}", role='banner')
+                block navbarTopPrimaryContent
+                    .container
+                        .bc-navbar-left
+                            .bc-navbar-divider
+                                a.bc-navbar-brand(href='/')
+                                    img(src='/images/logo-icon.svg', alt='Traxis')
+                            .bc-navbar-divider
+                                ul.nav.nav-pills
+                                    li
+                                        a(href='/modules/invoices/index.html') Invoices
+                                    li
+                                        a(href='/modules/clients/index.html') Clients
+                                    li
+                                        a(href='/modules/stats/index.html') Statistics
+                        .bc-navbar-right
+                            .bc-navbar-divider.bc-navbar-divider-no-spacing.bc-navbar-divider-bordered
+                                a.bc-navbar-btn-stretch(href='#')
+                                    i.glyphicon.glyphicon-help
+                                    span.sr-only Support
+                            .bc-navbar-divider.bc-navbar-divider-no-spacing.bc-navbar-divider-bordered
+                                .dropdown
+                                    a.bc-navbar-btn-stretch.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                                        | #{contentData.user.fullName}
+                                        span.caret
+                                    ul.dropdown-menu.bc-dropdown-menu-touch-friendly.pull-right
+                                        li
+                                            a(href='/modules/settings/my-settings.html') User settings
+                                        li
+                                            a(href='/modules/authentication/sign-in.html')
+                                                span.glyphicon.glyphicon-logout.c-spacer-right-s
+                                                | Sign out
+
+        if navbarTopSecondary
+            header.bc-navbar(class="#{navbarTopSecondaryClass || 'bc-navbar-medium bc-navbar-fixed-top'}", role='banner')
+                block navbarTopSecondaryContent
+                    .container
+                        .bc-navbar-left
+                            .bc-navbar-divider
+                                ul.nav.nav-pills
+                                    li(class="#{pathname.match(/invoices/) ? 'active' : '' }")
+                                        a(href="/modules/invoices/list.html") Invoices
+                                    li(class="#{pathname.match(/settings/) ? 'active' : '' }")
+                                        a(href="/modules/settings/my-settings.html") Settings
+                        .bc-navbar-right
+                            block navbar-top-secondary-content-controls
+                                // No controls by default
+
+        if layoutFullscreen
+            .bc-container-content(class="#{navbarbottomprimary ? 'bc-container-content-has-navbar-bottom-primary' : ''}")
+                div(class="#{contentLayoutClass || 'bc-container-content-layout-fullscreen'}")
+                    block content
+                        // Page content here in sub template
+        else
+            .bc-container-content.c-util-is-scrollable
+                div(class="#{contentLayoutClass || 'bc-container-content-layout-default'}")
+                    .container
+                        block content
+                            // Page content here in sub template
+
+        if navbarBottomPrimary
+            header.bc-navbar(class="#{navbarBottomPrimaryClass || 'bc-navbar-medium bc-navbar-gray-light bc-navbar-fixed-bottom'}", role='banner')
+                block navbarBottomPrimaryContent
+                    // Page content here in sub template
+
+    block modals
+
+    block messages

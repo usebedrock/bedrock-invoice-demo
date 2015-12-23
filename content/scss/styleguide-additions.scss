@@ -1,0 +1,27 @@
+.c-sample-content-tall {
+  min-height: 500px;
+}
+
+.c-sample-tooltip-visible {
+  min-height: 150px;
+}
+
+.c-sample-tooltip-visible .tooltip {
+  display: block;
+  opacity: 1;
+}
+
+.c-sample-modal-visible .modal {
+  display: block;
+  opacity: 1;
+  position: static;
+  
+  display: block;
+  top: auto;
+  left: auto;
+  right: auto;
+  margin: 20px;
+  z-index: 1;
+  max-width: 100%;
+  
+}

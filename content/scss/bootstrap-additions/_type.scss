@@ -1,0 +1,9 @@
+.text-muted a {
+  color: $text-muted;
+  text-decoration: none;
+  border-bottom: 1px solid rgba($text-muted,0.33);
+  &:hover {
+    color: $blue;
+    border-color: $blue;
+  }
+}

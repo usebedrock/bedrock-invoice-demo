@@ -1,0 +1,93 @@
+/* ==========================================================================
+  Additions to bootstrap/panels
+   ========================================================================== */
+
+/* Panel controls
+   ========================================================================== */
+
+.panel-heading,
+.panel-footer {
+  @include clearfix;
+}
+
+.panel-controls-left {
+  float: left;
+}
+
+.panel-controls-right {
+  float: right;
+  .btn-link {
+    padding-left: 5px; // Tighter spacing
+    padding-right: 5px; // Tighter spacing
+  }
+}
+
+.panel-controls {
+  .panel-title {
+    margin: 0;
+    padding: $padding-base-vertical 0;
+    line-height: $line-height-base;
+  }
+  .pagination {
+    margin: 0;
+  }
+}
+
+.panel-title-big {
+  font-size: 21px;
+}
+
+.panel-body-no-spacing {
+  padding: 0;
+}
+
+/* Panel
+   ========================================================================== */
+
+.panel-body + .panel-body {
+  border-top: 1px solid $panel-inner-border;
+}
+
+
+/* Block lists in panels
+   ========================================================================== */
+
+// Place a non-bordered `.bc-block-list` within a panel (not within a `.panel-body`) and
+// watch it go full width.
+
+.panel {
+  > .bc-block-list {
+    margin-bottom: 0;
+  }
+  .bc-block-list-item:first-child {
+    border-top-left-radius: ($panel-border-radius - 1);
+    border-top-right-radius: ($panel-border-radius - 1);
+  }
+  .bc-block-list-item:last-child {
+    border-bottom-left-radius: ($panel-border-radius - 1);
+    border-bottom-right-radius: ($panel-border-radius - 1);
+  }
+}
+
+/* Panel styles
+   ========================================================================== */
+
+.panel-minimal {
+  background: transparent;
+  box-shadow: none;
+  .panel-heading + .panel-body,
+  .panel-heading + .table {
+    border-top: 1px solid $panel-inner-border;
+  }
+}
+
+.panel-footer {
+  background-color: transparent;
+}
+
+/* Mini padding body (to be able to use .bc-navbar on top of a panel)
+   ========================================================================== */
+
+.panel-body-mini-pad {
+  padding: 3px;
+}

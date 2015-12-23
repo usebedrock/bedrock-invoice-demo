@@ -1,0 +1,86 @@
+/* Spacer
+   ========================================================================== */
+
+// All
+
+.c-spacer-s { padding: 5px; }
+.c-spacer { padding: 10px; }
+.c-spacer-l { padding: 20px; }
+
+@media (max-width: $screen-md - 1) {
+  .c-spacer-s-at-sm { padding: 5px; }
+  .c-spacer-at-sm { padding: 10px; }
+  .c-spacer-l-at-sm { padding: 20px; }
+}
+
+// Left
+
+.c-spacer-left-s { padding-left: 5px; }
+.c-spacer-left { padding-left: 10px; }
+.c-spacer-left-l { padding-left: 20px; }
+
+@media (max-width: $screen-md - 1) {
+  .c-spacer-left-s-at-sm { padding-left: 5px; }
+  .c-spacer-left-at-sm { padding-left: 10px; }
+  .c-spacer-left-l-at-sm { padding-left: 20px; }
+}
+
+@media (min-width: $screen-md) {
+  .c-spacer-left-s-at-md { padding-left: 5px; }
+  .c-spacer-left-at-md { padding-left: 10px; }
+  .c-spacer-left-l-at-md { padding-left: 20px; }
+}
+
+// Right
+.c-spacer-right-mini { padding-right: 3px; }
+.c-spacer-right-s { padding-right: 5px; }
+.c-spacer-right { padding-right: 10px; }
+.c-spacer-right-l { padding-right: 20px; }
+
+@media (max-width: $screen-md - 1) {
+  .c-spacer-right-s-at-sm { padding-right: 5px; }
+  .c-spacer-right-at-sm { padding-right: 10px; }
+  .c-spacer-right-l-at-sm { padding-right: 20px; }
+}
+
+@media (min-width: $screen-md) {
+  .c-spacer-right-s-at-md { padding-right: 5px; }
+  .c-spacer-right-at-md { padding-right: 10px; }
+  .c-spacer-right-l-at-md { padding-right: 20px; }
+}
+
+// Top
+
+.c-spacer-top-s { padding-top: 5px; }
+.c-spacer-top { padding-top: 10px; }
+.c-spacer-top-l { padding-top: 20px; }
+
+@media (max-width: $screen-md - 1) {
+  .c-spacer-top-s-at-sm { padding-top: 5px; }
+  .c-spacer-top-at-sm { padding-top: 10px; }
+  .c-spacer-top-l-at-sm { padding-top: 20px; }
+}
+
+@media (min-width: $screen-md) {
+  .c-spacer-top-s-at-md { padding-top: 5px; }
+  .c-spacer-top-at-md { padding-top: 10px; }
+  .c-spacer-top-l-at-md { padding-top: 20px; }
+}
+
+// Bottom
+
+.c-spacer-bottom-s { padding-bottom: 5px; }
+.c-spacer-bottom { padding-bottom: 10px; }
+.c-spacer-bottom-l { padding-bottom: 20px; }
+
+@media (min-width: $screen-sm) {
+  .c-spacer-bottom-s-at-sm { padding-bottom: 5px; }
+  .c-spacer-bottom-at-sm { padding-bottom: 10px; }
+  .c-spacer-bottom-l-at-sm { padding-bottom: 20px; }
+}
+
+@media (min-width: $screen-md) {
+  .c-spacer-bottom-s-at-md { padding-bottom: 5px; }
+  .c-spacer-bottom-at-md { padding-bottom: 10px; }
+  .c-spacer-bottom-l-at-md { padding-bottom: 20px; }
+}

@@ -1,0 +1,63 @@
+// TODO: sync this with avatar dimensions in avatar (orb with initials) file, using a top-level variable
+$avatar-dimensions: 50px;
+
+.c-media-holder {
+  .c-media:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+.c-media {
+  border-bottom: 1px solid $gray-light;
+  @extend .clearfix;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  .c-media {
+    margin-top: 10px;
+    margin-left: $avatar-dimensions;
+    padding-left: 0;
+
+    &.type-reply {
+      display: none;
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+
+  .media-left {
+    float: left;
+    margin-right: 10px;
+
+    img {
+      display: block;
+      width: $avatar-dimensions;
+    }
+  }
+
+  &.type-service-issue {
+    padding-left: $avatar-dimensions + 10px;
+  }
+
+  .media-body {
+    overflow: hidden;
+  }
+
+  .media-title {
+    font-size: 16px;
+  }
+
+  time {
+    color: $gray;
+    font-size: 12px;
+  }
+
+  .media-content {
+    padding-top: 10px;
+  }
+}

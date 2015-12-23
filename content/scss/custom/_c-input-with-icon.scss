@@ -1,0 +1,26 @@
+$input-icon-offset: 10px;
+$input-icon-size: 14px;
+$input-icon-text-padding: 5px;
+
+.c-input-with-icon {
+  position: relative;
+
+  .glyphicon {
+    font-size: $input-icon-size;
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    pointer-events: none;
+    color: mix($gray-mid, $gray-dark);
+  }
+
+  &.icon-left {
+    .glyphicon {
+      left: $input-icon-offset;
+    }
+
+    input {
+      padding-left: $input-icon-offset + $input-icon-size + $input-icon-text-padding;
+    }
+  }
+}

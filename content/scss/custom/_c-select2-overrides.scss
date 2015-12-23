@@ -1,0 +1,13 @@
+/* ==========================================================================
+  Select 2 overrides
+   ========================================================================== */
+
+.select2-container--bootstrap {
+  .select2-results__options .select2-results__option.select2-results__option[aria-selected=true] {
+    background: darken($brand-primary, 10%);
+    color: #FFF;
+  }
+  .select2-results__options .select2-results__option.select2-results__option--highlighted[aria-selected=true] {
+    background: $brand-primary;
+  }
+}

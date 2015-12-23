@@ -1,0 +1,43 @@
+extends ../../layouts/default
+
+block body
+    
+    .c-utility-flex-center.c-spacer-at-sm
+        .c-utility-flex-center-element
+            .bc-min-width-screen-at-md
+                .row
+                    .col-md-6.col-md-offset-3
+                        .c-spacer-top-l-at-md.c-spacer-top-at-sm
+                            .text-center
+                                a(href="/modules/authentication/sign-in.html")
+                                    img(src="/images/logo.svg", style="width: 180px;")
+                        .c-spacer-top-l-at-md.c-spacer-top-at-sm
+                            block panel
+                                .panel.panel-default
+                                    .panel-body
+                                        h3.m0 Sign in
+                                    .panel-body
+                                        form.bc-form-horizontal(role='form')
+                                            .form-group
+                                                label.col-sm-4.control-label
+                                                    | E-mail
+                                                    abbr(title="Required field") *
+                                                .col-sm-8
+                                                    input.form-control(type='email')
+                                            .form-group
+                                                label.col-sm-4.control-label
+                                                    | Password
+                                                    abbr(title="Required field") *
+                                                .col-sm-8
+                                                    input.form-control(type='password')
+                                            .form-group
+                                                .col-sm-8.col-sm-offset-4
+                                                    .btn-toolbar
+                                                        a.btn.btn-primary(href='/modules/invoices/index.html') Sign in
+                        .c-spacer-bottom
+                            ul.bc-bordered-list.bc-bordered-list-horizontal.bc-bordered-list-horizontal-centered
+                                li.text-muted ©#{projectTitle} 2015
+                                if pathname.match(/sign-in/)
+                                    li: a(href="/modules/authentication/reset-password.html") Forgot your password?
+                                if pathname.match(/reset-password/)
+                                    li: a(href="/modules/authentication/sign-in.html") Log in

@@ -1,0 +1,11 @@
+extends layouts/master
+
+include ../../core/templates/mixins/render-page-tree
+
+block body
+    .bc-container
+        .bc-container-content
+            .br-prototype-nav-index
+                img.c-spacer-bottom-l(src="../../images/logo.svg", style="width: 120px;")
+                .br-prototype-nav-index-cols
+                    +renderPageTree

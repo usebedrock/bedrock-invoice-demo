@@ -1,0 +1,17 @@
+/* ==========================================================================
+  c-min-app-width
+  Set a minimum app width for the body
+  Useful for a min-width for the full application. This class has to be on the <body> for it to work properly on smartphones and tablets.
+   ========================================================================== */
+
+/* Variables
+   ========================================================================== */
+
+$bc-min-app-width: 1024px !default;
+
+/* Component
+   ========================================================================== */
+
+body.c-min-app-width {
+  min-width: $bc-min-app-width;
+}

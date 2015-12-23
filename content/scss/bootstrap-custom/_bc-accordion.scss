@@ -1,0 +1,72 @@
+/* ==========================================================================
+  Accordion menu
+  Collapsable menu
+   ========================================================================== */
+
+$bc-accordion-child-border-color:                      $gray-light;
+$bc-accordion-child-border-color-inverse:              rgba($white, 0.15);
+
+$bc-accordion-link-hover-bg:                           $brand-primary;
+$bc-accordion-text-color:                              $gray-dark;
+$bc-accordion-text-color-inverse:                      $gray-light;
+$bc-accordion-hover-color:                             $gray-dark;
+
+$bc-accordion-expand-collapse-trigger-icon-width:      20px;
+$bc-accordion-child-side-padding:                      10px;
+$bc-accordion-header-height:                           30px;
+
+.bc-accordion-child {
+  border-top: none;
+  border-bottom: 1px solid $bc-accordion-child-border-color;
+}
+
+.bc-accordion-child__header {
+  background: $gray-light;
+}
+
+.bc-accordion-child__header > a {
+  border: none;
+  padding: 0 $bc-accordion-child-side-padding;
+  height: $bc-accordion-header-height;
+  line-height: $bc-accordion-header-height;
+  margin: 0;
+  color: $bc-accordion-text-color;
+  display: block;
+  font-weight: $headings-font-weight;
+  text-decoration: none;
+  &:hover,
+  &:active,
+  &:focus {
+    color: $bc-accordion-text-color-inverse;
+    background: $bc-accordion-hover-color;
+  }
+}
+
+.bc-accordion-child__content {
+  display: none;
+}
+
+.js-accordion-child--expanded {
+  .bc-accordion-child__content {
+    display: block;
+    padding-left: $bc-accordion-expand-collapse-trigger-icon-width + $bc-accordion-child-side-padding;
+    border-top: 1px solid $bc-accordion-child-border-color;
+    position: relative;
+    &.hide {
+      display: none; // Bootstrap class specificity
+    }
+  }
+}
+
+.bc-accordion-child__expand-collapse-trigger {
+  // If we are using icons to expand/collapse
+  .glyphicon-collapsed,
+  .glyphicon-expanded {
+    width: $bc-accordion-expand-collapse-trigger-icon-width;
+    text-align: center;
+    display: inline-block;
+  }
+  .glyphicon-expanded {
+    opacity: 0.5;
+  }
+}

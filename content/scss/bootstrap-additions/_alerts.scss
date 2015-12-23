@@ -1,0 +1,40 @@
+/* Alerts in panels
+   ========================================================================== */
+
+.modal-dialog .alert,
+.panel .alert {
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Floating alert
+   ========================================================================== */
+
+.alert-floating {
+  @include box-shadow(0 3px 9px rgba(0,0,0,.15));
+  max-width: 350px;
+  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  top: 25px;
+  right: 0;
+  z-index: 3000;
+
+}
+
+.alert-floating-inner {
+  position: relative;
+  padding-right: 30px;
+  p {
+    margin: 0;
+  }
+  .btn {
+    position: absolute;
+    right: 0;
+    top: -4px;
+  }
+  .btn-ghost {
+    color: inherit;
+    border-color: inherit;
+  }
+}

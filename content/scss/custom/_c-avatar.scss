@@ -1,0 +1,49 @@
+/* ==========================================================================
+  c-avatar
+   ========================================================================== */
+
+/* Variables
+   ========================================================================== */
+
+$c-avatar-default-bg:            $brand-primary !default;
+$c-avatar-dimensions:            40px !default;
+$c-avatar-dimensions-s:          24px !default;
+
+/* Component
+   ========================================================================== */
+
+.c-avatar {
+  width: $c-avatar-dimensions;
+  height: $c-avatar-dimensions;
+  line-height: $c-avatar-dimensions;
+  border-radius: 50%;
+  text-align: center;
+  background-color: $c-avatar-default-bg;
+  color: #fff;
+  font-weight: bold;
+}
+
+.c-avatar-s {
+  width: $c-avatar-dimensions-s;
+  height: $c-avatar-dimensions-s;
+  line-height: $c-avatar-dimensions-s;
+  font-size: 80%;
+}
+
+.c-avatar-and-text {
+  @include clearfix();
+  .c-avatar {
+    float: left;
+    margin-right: 10px;
+  }
+  .c-avatar-text {
+    float: left;
+    margin-top: 10px;
+  }
+  .c-avatar-s {
+    margin-right: 5px;
+  }
+  .c-avatar-s + .c-avatar-text {
+    margin-top: 3px;
+  }
+}

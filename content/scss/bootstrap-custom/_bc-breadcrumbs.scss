@@ -1,0 +1,146 @@
+/* ==========================================================================
+  Custom breadcrumbs
+   ========================================================================== */
+
+$bc-breadcrumbs-size                             : 32px; // This controls the height of the breadcrumb
+$bc-breadcrumbs-angle                            : 24px; // This controls the angle of the arrow
+$bc-breadcrumbs-font-size                        : 14px;
+$bc-breadcrumbs-font-weight                      : 500;
+$bc-breadcrumbs-bg                               : $gray-lighter;
+$bc-breadcrumbs-text-color                       : $gray-dark;
+$bc-breadcrumbs-border-color                     : darken($gray-lighter, 10%);
+$bc-breadcrumbs-hover-color                      : darken($gray-lighter, 10%);
+$bc-breadcrumbs-selected-color                   : darken($gray-light, 2%);
+$bc-breadcrumbs-padding-left                     : $grid-gutter-width/2;
+
+/* Breadcrumbs
+   ========================================================================== */
+
+.bc-breadcrumbs {
+  max-height: $bc-breadcrumbs-size; // Prevent overflow
+  overflow: hidden;
+
+  // Make sure our element is reset
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  // Type
+  font-size: $bc-breadcrumbs-font-size;
+  font-weight: $bc-breadcrumbs-font-weight;
+
+  // Icon positioning
+  .glyphicon:before {
+    bottom: 3px;
+    position: relative;
+  }
+
+  > li {
+    float: left;
+    user-select: none;
+    &:first-child > a,
+    &:first-child > .holder {
+      padding-left: $bc-breadcrumbs-padding-left;
+    }
+    &:last-child {
+      padding-right: $bc-breadcrumbs-angle; // make sure last arrow shows even though breadcrumb has overflow hidden property
+    }
+  }
+  > li > a,
+  > li > .holder {
+    line-height: 1;
+    border: none;
+    position: relative;
+    text-decoration: none;
+    padding:
+      ($bc-breadcrumbs-size - $bc-breadcrumbs-font-size)/2
+      0
+      ($bc-breadcrumbs-size - $bc-breadcrumbs-font-size)/2
+      ($bc-breadcrumbs-angle + $grid-gutter-width/3);
+    position: relative;
+    display: block;
+    float: left;
+  }
+  /* Crumb arrows
+     ========================================================================== */
+  > li > a,
+  > li > .holder {
+    background: $bc-breadcrumbs-bg;
+    &:after {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: $bc-breadcrumbs-size solid transparent; /* Go big on the size, and let overflow hide */
+      border-bottom: $bc-breadcrumbs-size solid transparent;
+      border-left: $bc-breadcrumbs-angle solid $bc-breadcrumbs-bg;
+      position: absolute;
+      top: 50%;
+      margin-top: -$bc-breadcrumbs-size;
+      left: 100%;
+      z-index: 2;
+      margin-left: -2px;
+    }
+    &:before {
+      content: " ";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: $bc-breadcrumbs-size solid transparent;
+      border-bottom: $bc-breadcrumbs-size solid transparent;
+      border-left: ($bc-breadcrumbs-angle - 1px) solid $bc-breadcrumbs-border-color;
+      position: absolute;
+      top: 50%;
+      margin-top: -$bc-breadcrumbs-size;
+      left: 100%;
+      z-index: 1;
+    }
+  }
+  > li > a {
+    color: $bc-breadcrumbs-text-color;
+    &:hover,
+    &:active,
+    &:focus {
+      background: $bc-breadcrumbs-hover-color;
+      &:after {
+        border-left-color: $bc-breadcrumbs-hover-color; // arrow on bg
+      }
+    }
+  }
+  > li.selected > .holder {
+    background: $bc-breadcrumbs-selected-color;
+    &:after {
+      border-left-color: transparent;
+    }
+    &:before {
+      border-left-color: $bc-breadcrumbs-selected-color; // arrow on bg
+    }
+  }
+  // Only text visible on last one
+  > li:last-child {
+    > .holder {
+      background: none !important; // Using !important to reduce CSS bloat when there are many variants
+      &:before,
+      &:after {
+        border: none !important; // Using !important to reduce CSS bloat when there are many variants
+      }
+    }
+  }
+  /* Label itself
+     ========================================================================== */
+  span.bc-breadcrumbs-label {
+    z-index: 3;
+    position: relative;
+    left: 2px;
+  }
+}
+
+/* Positioning in navbar
+   ========================================================================== */
+
+.bc-navbar {
+  .bc-breadcrumbs {
+    float: left;
+    margin-left: -$grid-gutter-width/2;
+  }
+}

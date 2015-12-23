@@ -1,0 +1,117 @@
+/* ==========================================================================
+  bc-table-sortable
+   ========================================================================== */
+
+/* ==========================================================================
+   Component
+   ========================================================================== */
+
+.bc-table-sortable {
+  
+  .sortable-label {
+    padding-right: 12px;
+  }
+
+  // Default
+  th {
+    color: lighten($gray-dark, 20%);
+    padding: 0;
+  }
+
+  th.unsortable,
+  .checkbox-holder {
+    padding: $table-cell-padding;
+  }
+
+  // Extends caret with a flipped caret, to make a sortable indicator composed of .caret and .caret.flipped
+  .caret.flipped {
+    border-bottom: $caret-width-base solid $dropdown-caret-color;
+    border-right: $caret-width-base solid transparent;
+    border-left:  $caret-width-base solid transparent;
+    // Firefox fix for https://github.com/twbs/bootstrap/issues/9538. Once fixed,
+    // we can just straight up remove this.
+    border-top: 0 dotted;
+  }
+
+  .sort-indicator {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 12px;
+    display: inline-block;
+    height: 10px;
+    white-space: nowrap;
+    .caret {
+      @include opacity(0.3);
+      position: absolute;
+      top: auto;
+      bottom: 0;
+    }
+    .caret.flipped {
+      top: 0;
+    }
+  }
+
+  .sortable {
+    a {
+      position: relative;
+      white-space: nowrap;
+      display: block;
+      color: $gray-dark;
+    }
+  }
+
+  .sorted-asc,
+  .sorted-desc,
+  .sortable {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .sortable:hover {
+    background: darken($table-border-color, 20%);
+    border-bottom-color: darken($table-border-color, 30%);
+    a {
+      color: #FFF;
+    }
+  }
+
+  .sorted-asc,
+  .sorted-desc {
+    &, &:hover {
+      background: lighten($table-border-color, 10%);
+      border-bottom-color: darken($table-border-color, 10%);
+      a {
+        color: $gray-dark;
+      }
+    }
+  }
+
+  .sorted-asc a {
+    cursor: s-resize;
+  }
+
+  .sorted-desc a {
+    cursor: n-resize;
+  }
+
+  .sorted-asc .sort-indicator {
+    .caret {
+      @include opacity(1);
+    }
+    .caret.flipped {
+      @include opacity(0.3);
+    }
+  }
+
+  .sorted-desc .sort-indicator {
+    .caret {
+      @include opacity(0.3);
+    }
+    .caret.flipped {
+      @include opacity(1);
+    }
+  }
+
+}

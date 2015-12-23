@@ -1,0 +1,23 @@
+/* ==========================================================================
+   bc-navbar-brand
+   Text meant to be used in a navbar to signify e.g. the title of a page
+   ========================================================================== */
+
+/* Component
+   ========================================================================== */
+
+.bc-navbar-brand {
+  display: block;
+  color: $gray-dark;
+  font-size: 17px;
+  margin: 0;
+  padding: 4px 0 0;
+  font-weight: $headings-font-weight;
+  white-space: nowrap;
+  .bc-navbar-medium & {
+    margin-top: 10px;
+  }
+  img {
+    width: 24px;
+  }
+}

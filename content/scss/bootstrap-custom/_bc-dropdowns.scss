@@ -1,0 +1,6 @@
+// A dropdown menu that is touch friendlier than standard Bootstrap
+.bc-dropdown-menu-touch-friendly {
+  > li > a {
+    padding: 10px 20px;
+  }
+}

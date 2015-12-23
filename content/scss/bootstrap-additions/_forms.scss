@@ -1,0 +1,50 @@
+.help-block {
+  font-size: 12px;
+}
+
+textarea.form-control-height-s {
+  height: 150px;
+}
+
+textarea.form-control-height-m {
+  height: 200px;
+}
+
+textarea.form-control-height-l {
+  height: 250px;
+}
+
+/* Group block labels
+   ========================================================================== */
+
+.form-group-block-labels {
+  .checkbox,
+  .radio {
+    margin: 0;
+
+    label {
+      display: block;
+      padding: 5px;
+      padding-left: 30px;
+      margin-left: -5px;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: $gray-lighter;
+      }
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        margin-left: -20px;
+      }
+    }
+  }
+}
+
+/* Disabled radio buttons and checkboxes 
+   ========================================================================== */
+
+.radio-disabled,
+.checkbox-disabled {
+  color: $text-muted;
+}

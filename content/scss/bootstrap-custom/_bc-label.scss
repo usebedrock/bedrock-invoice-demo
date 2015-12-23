@@ -1,0 +1,21 @@
+/* c-label
+   ========================================================================== */
+
+.bc-label {
+  background: $gray;
+  color: #FFF;
+  padding: 3px 6px;
+  border-radius: 3px;
+  text-align: center;
+  display: inline; // Important for placement in navbar
+}
+
+.bc-label-danger {
+  background: $brand-danger;
+  color: #FFF;
+}
+
+.bc-label-warning {
+  background: $brand-warning;
+  color: #FFF;
+}

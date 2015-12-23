@@ -1,0 +1,155 @@
+/* ==========================================================================
+  Block list
+   ========================================================================== */
+
+$block-list-item-bg:             $white !default;
+$block-list-item-border-color:   $gray-light !default;
+$block-list-item-hover-color:    $gray-light !default;
+$block-list-item-active-color:   $gray-light !default;
+$block-list-padding:             $grid-gutter-width / 2 $grid-gutter-width / 2 !default;
+$block-list-highlight-color:     #FFC !default;
+
+/* Block list item
+   ========================================================================== */
+
+.bc-block-list { // ul or ol
+  margin: 0;
+  padding: 0;
+}
+
+/* Block list item
+   ========================================================================== */
+
+.bc-block-list-item {
+  display: block;
+  border-bottom: 1px solid $block-list-item-border-color;
+  background: $block-list-item-bg;
+  overflow: hidden; /* Clearfix */
+}
+
+/*
+  Sometimes a block list item is a list item, with a contained <a>; sometimes it
+  is directly an <a> element.We support both situations for interactive lists (go to a link)
+  or non interactive lists.
+*/
+
+a.bc-block-list-item,
+.bc-block-list-item a {
+  display: block;
+  overflow: auto; /* Clearfix */
+  // We are supposing the block-list item in an <a> element here
+  padding: $block-list-padding;
+  text-decoration: none;
+  &:hover,
+  &:active,
+  &:focus {
+    background: $block-list-item-hover-color;
+  }
+}
+
+.bc-block-list-item-active {
+  background: $block-list-item-active-color;
+}
+
+/*
+  This class needs to be applied to list items that don't contain links to switch over the padding
+  from the <a> element to the list element
+*/
+
+.bc-block-list-item-no-link {
+  padding: $block-list-padding;
+}
+
+/* Block item new
+   ========================================================================== */
+
+.bc-block-list-item-new {
+  background: $block-list-highlight-color;
+}
+
+/* Disclosure arrow on right side
+   ========================================================================== */
+
+.bc-block-list-item-disclosure {
+  float: right;
+  margin-top: 6px;
+}
+
+.bc-block-list-item-info {
+  float: left;
+  width: 84%;
+}
+
+/* Variant with icons
+   ========================================================================== */
+
+.bc-block-list-item-has-icon {
+  .bc-block-list-item-info-holder {
+    float: left;
+    width: 84%;
+  }
+  .bc-block-list-item-icon {
+    float: left;
+    margin-right: 12px;
+    img {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+  }
+  
+  /* Variant with gear icons 
+     ========================================================================== */
+
+  .bc-block-list-item-icon-gear {
+    img {
+      width: 28px;
+      height: 14px;
+      margin-top: 12px;
+    }
+  }
+}
+
+/* Variant with avatars
+   ========================================================================== */
+
+.bc-block-list-item-has-avatar {
+  .c-avatar {
+    float: left;
+    margin-top: 4px;
+    margin-right: 10px;
+  }
+}
+
+/* Innner text 
+   ========================================================================== */
+
+.bc-block-list-item-info-text {
+  .bc-block-list-item-info-text-holder &:only-child {
+    margin-top: 10px;
+  }
+}
+
+.bc-block-list-item-info-text-big {
+  font-size: 17px;
+  .bc-block-list-item-info-text-holder &:only-child {
+    margin-top: 7px;
+  }
+}
+
+.bc-block-list-item-info-text-bold {
+  font-weight: $headings-font-weight;
+}
+
+/* Modifiers to change colors 
+   ========================================================================== */
+
+.bc-block-list-colors-standard {
+  .bc-block-list-item-info-text {
+    color: $gray-mid;
+  }
+  .bc-block-list-item-info-text-big,
+  .bc-block-list-item-info-text-bold {
+    color: $gray-dark;
+  }
+}

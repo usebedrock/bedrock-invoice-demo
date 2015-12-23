@@ -1,0 +1,45 @@
+/* Flex utility to horizontally align items
+   ========================================================================== */
+
+.c-utility-flex {
+
+  .flexbox & {
+    display: flex;
+    .c-utility-flex-element {
+      flex: 0 0 auto;
+    }
+  }
+
+  .no-flexbox & {
+    .c-utility-flex-element {
+      display: inline-block;
+    }
+  }
+
+}
+
+.c-utility-flex-align-vertical-middle {
+  align-items: center;
+}
+
+/* Flex utility for vertical/horizontal center
+   ========================================================================== */
+
+.flexbox .c-utility-flex-center {
+  display: flex;
+  height: 100%;
+  > .c-utility-flex-center-element {
+    margin: auto;
+  }
+}
+
+.no-flexbox .c-utility-flex-center {
+  display: table;
+  height: 100%;
+  width: 100%;
+  > .c-utility-flex-center-element {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+  }
+}

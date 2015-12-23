@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.3 (16044) - http://www.bohemiancoding.com/sketch -->
+    <title>logout</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="UI-guide-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="ui-06-icons" sketch:type="MSArtboardGroup" transform="translate(-340.000000, -430.000000)" fill="#656461">
+            <path d="M341,437 L343,437 L343,443 L341,443 L341,437 Z M353,437 L355,437 L355,443 L353,443 L353,437 Z M347,435 L349,435 L349,441 L347,441 L347,435 Z M341,443 L355,443 L355,445 L341,445 L341,443 Z M348,431 L352,435 L344,435 L348,431 Z" id="logout" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
