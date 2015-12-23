@@ -1,18 +1,17 @@
 extends ../../layouts/default
 
+block append pageVariables
+    - var pageTitle = "My Settings"
+
 block content
-    .container
-        h2 My Settings
-        .panel.panel-default
-            .panel-heading
-                h3.panel-title Panel title
-            .panel-body
-                form.form-horizontal(role='form')
-                    .form-group
-                        label.col-md-2.control-label Email
-                        .col-md-10
-                            p.form-control-static email@example.com
-                    .form-group
-                        label.col-md-2.control-label Password
-                        .col-md-10
-                            input#inputPassword.form-control(type='password', placeholder='Enter password...')
+    .panel.panel-default
+        .panel-body
+            form.form-horizontal(role='form')
+                .form-group
+                    label.col-md-2.control-label Email
+                    .col-md-10
+                        p.form-control-static email@example.com
+                .form-group
+                    label.col-md-2.control-label Password
+                    .col-md-10
+                        input#inputPassword.form-control(type='password', placeholder='Enter password...')

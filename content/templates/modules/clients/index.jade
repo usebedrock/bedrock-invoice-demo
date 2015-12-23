@@ -1,30 +1,25 @@
 extends ../../layouts/default
 
+block append pageVariables
+    - var pageTitle = "Clients"
+
 block content
 
-    .container
-        h2 Invoices
-        .panel.panel-default
-            table.table.table-align-middle
-                thead
+    .panel.panel-default
+        table.table.table-align-middle
+            thead
+                tr
+                    th Name
+                    th.table-actions-column
+            tbody
+                each client in contentData.clients
                     tr
-                        th Client name
-                        th ID
-                        th Date
-                        th Value
-                        th.table-actions-column
-                tbody
-                    each invoice in contentData.invoices
-                        tr
-                            td #{invoice.name}
-                            td #{invoice.id}
-                            td #{invoice.date}
-                            td #{invoice.currency} #{invoice.value}
-                            td.table-actions-column
-                                .btn-toolbar
-                                    a.btn.btn-default.btn-icon(href="/modules/invoices/delete.html")
-                                        i.glyphicon.glyphicon-trash
-                                        span.sr-only Delete
-                                    a.btn.btn-default.btn-icon(href="/modules/invoices/detail.html")
-                                        i.glyphicon.glyphicon-edit
-                                        span.sr-only Edit
+                        td #{client.name}
+                        td.table-actions-column
+                            .btn-toolbar
+                                a.btn.btn-default.btn-icon(href="/modules/invoices/delete.html")
+                                    i.glyphicon.glyphicon-trash
+                                    span.sr-only Delete
+                                a.btn.btn-default.btn-icon(href="/modules/invoices/detail.html")
+                                    i.glyphicon.glyphicon-edit
+                                    span.sr-only Edit

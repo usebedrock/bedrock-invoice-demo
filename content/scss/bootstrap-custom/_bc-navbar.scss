@@ -312,6 +312,10 @@ $bc-navbar-shadow-bg-color:                       $gray-base !default;
   @include bc-navbar-variant($gray-light,darken($gray-light, 10%));
 }
 
+.bc-navbar-gray-lighter {
+  @include bc-navbar-variant($gray-lighter,darken($gray-lighter, 10%));
+}
+
 .bc-navbar-gray-dark {
   @include bc-navbar-variant($gray-dark,darken($gray-dark, 10%));
 }

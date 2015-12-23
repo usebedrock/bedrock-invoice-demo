@@ -1,9 +1,10 @@
 extends ../../layouts/default
 
+block append pageVariables
+    - var pageTitle = "Invoices"
+
 block content
 
-    .c-page-header
-        h2 Invoices
     .panel.panel-default
         table.table.table-align-middle
             thead

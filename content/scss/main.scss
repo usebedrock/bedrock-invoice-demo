@@ -95,7 +95,6 @@
 @import "bootstrap-custom/bc-form-horizontal";
 @import "bootstrap-custom/bc-breadcrumbs";
 @import "bootstrap-custom/bc-block-list";
-@import "bootstrap-custom/bc-handd";
 @import "bootstrap-custom/bc-container";
 @import "bootstrap-custom/bc-navbar";
 @import "bootstrap-custom/bc-navbar-brand";
@@ -107,32 +106,20 @@
 @import "bootstrap-custom/bc-spinner";
 @import "bootstrap-custom/bc-min-width";
 @import "bootstrap-custom/bc-label";
-@import "bootstrap-custom/bc-chip";
 @import "bootstrap-custom/bc-password-strength";
 
 /* Custom components (entirely custom components)
    ========================================================================== */
 
-@import "custom/c-accordion";
 @import "custom/c-avatar";
-@import "custom/c-company-picker";
 @import "custom/c-data-points";
-@import "custom/c-gear-card";
-@import "custom/c-gear-map";
 @import "custom/c-content";
-@import "custom/c-group-header";
-@import "custom/c-iframe";
-@import "custom/c-image-icon";
-@import "custom/c-input-with-icon";
 @import "custom/c-media";
-@import "custom/c-menu-notifications";
 @import "custom/c-min-app-width";
 @import "custom/c-spacer";
 @import "custom/c-util";
 @import "custom/c-utility-flex";
 @import "custom/c-width-limiter";
-@import "custom/c-discussion-header";
-@import "custom/c-inline-help";
 
 /* Additions to the styleguide - not for production use
    ========================================================================== */
