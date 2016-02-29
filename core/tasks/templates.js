@@ -36,18 +36,21 @@ function getDefaultLocals() {
   delete require.cache[require.resolve('../discovery/icons')];
   delete require.cache[require.resolve('../discovery/patterns')];
   delete require.cache[require.resolve('../discovery/content-data')];
+  delete require.cache[require.resolve('../discovery/docs')];
 
   const pages = require('../discovery/pages');
   const colors = require('../discovery/colors');
   const icons = require('../discovery/icons');
   const patterns = require('../discovery/patterns');
   const contentData = require('../discovery/content-data');
+  const docs = require('../discovery/docs');
 
   return {
     contentData: contentData.discover(),
     patterns: patterns.discover(),
     pages: pages.discover(),
     icons: icons.discover(),
+    docs: docs.discover(),
     config,
     colorCategories: colors.discover(),
     slugify(input) {
@@ -73,7 +76,7 @@ function getDefaultLocals() {
 module.exports = {
   getDefaultLocals: getDefaultLocals,
   clean(done) {
-    del(['./dist/*.html', './dist/modules']).then(function () {
+    del(['./dist/**.html', './dist/modules', './dist/styleguide']).then(function () {
       done();
     });
   },
@@ -109,6 +112,26 @@ module.exports = {
           .pipe(prettify(options.prettify))
           .pipe(gulp.dest(paths.dist.styleguide))
       );
+
+      return es.merge.apply(null, tasks);
+    },
+    docs() {
+      const defaultLocals = getDefaultLocals();
+
+      const tasks = defaultLocals.docs.map(doc => {
+        return gulp.src(paths.core.templates.styleguide.doc)
+          .pipe(data(function (file) {
+            return Object.assign({}, getDefaultLocals(), {
+              doc
+            });
+          }))
+          .pipe(gulpJade(options.jade))
+          .pipe(prettify(options.prettify))
+          .pipe(rename(function (path) {
+            path.basename = doc.attributes.filename;
+          }))
+          .pipe(gulp.dest(paths.dist.docs));
+      });
 
       return es.merge.apply(null, tasks);
     },
