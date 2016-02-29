@@ -19,7 +19,7 @@ block body
                                 a.bc-navbar-brand(href='/')
                                     img(src='/images/logo-icon.svg', alt='Traxis')
                             .bc-navbar-divider
-                                ul.nav.nav-pills
+                                ul.nav.bc-navbar-nav
                                     li(class="#{ pathname.match(/invoices/) ? 'active' : '' }")
                                         a(href='/modules/invoices/index.html') Invoices
                                     li(class="#{ pathname.match(/clients/) ? 'active' : '' }")
@@ -27,13 +27,13 @@ block body
                                     li(class="#{ pathname.match(/stats/) ? 'active' : '' }")
                                         a(href='/modules/stats/index.html') Statistics
                         .bc-navbar-right
-                            .bc-navbar-divider.bc-navbar-divider-no-spacing.bc-navbar-divider-bordered
-                                a.bc-navbar-btn-stretch(href='#')
-                                    i.glyphicon.glyphicon-help
-                                    span.sr-only Support
-                            .bc-navbar-divider.bc-navbar-divider-no-spacing.bc-navbar-divider-bordered
-                                .dropdown
-                                    a.bc-navbar-btn-stretch.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                            ul.nav.bc-navbar-nav
+                                li
+                                    a(href='#')
+                                        i.glyphicon.glyphicon-help
+                                        span.sr-only Support
+                                li.dropdown
+                                    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
                                         | #{contentData.user.fullName}
                                         span.caret
                                     ul.dropdown-menu.bc-dropdown-menu-touch-friendly.pull-right
@@ -52,7 +52,7 @@ block body
                             .bc-navbar-divider
                                 h2.bc-navbar-brand #{pageTitle}
                         .bc-navbar-right
-                            block navbar-top-secondary-content-controls
+                            block navbarTopSecondaryContentControls
                                 // No controls by default
 
         if layoutFullscreen
