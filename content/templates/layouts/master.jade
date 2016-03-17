@@ -20,11 +20,11 @@ html.c-util-maximize-height.c-util-disable-scroll(lang='en')
         link(rel='stylesheet', href='/css/prototype.css')
         script(src='/js/modernizr.js')
 
-body.c-util-maximize-height.c-util-disable-scroll(class="#{bodyClass ? bodyClass : ''}")
+    body.c-util-maximize-height.c-util-disable-scroll(class="#{bodyClass ? bodyClass : ''}")
 
-    block body
+        block body
 
-    include ../../../core/templates/includes/prototype-nav
+        include ../../../core/templates/includes/prototype-nav
 
-    = "\n"
-    script(src='/js/bundle.js')
+        = "\n"
+        script(src='/js/bundle.js')
