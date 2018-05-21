@@ -1,0 +1,13 @@
+extends ../../../content/templates/_layouts/master
+
+block append pageVariables
+    - var htmlClass = config.ui && config.ui.dark ? 'br-styleguide br-styleguide--dark' : 'br-styleguide'
+
+block body
+
+    .br-styleguide-container
+        include ../includes/styleguide-nav
+
+        .br-styleguide-content
+            .br-content
+                div!= doc.body

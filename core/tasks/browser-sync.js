@@ -1,16 +1,18 @@
 const browserSync = require('browser-sync');
 const path = require('path');
 const paths = require('../paths');
-const config = require('../config');
+const config = require('../../bedrock.config');
 
 module.exports = function () {
   return browserSync.init({
     files: [
-      path.join(paths.dist.path, '**/*'),
+      path.join(paths.compiled.path, '**/*'),
+      '!**/*.map',
       paths.content.templates.all,
-      './core/templates/**/*.jade',
+      './core/templates/**/*.pug',
       paths.content.scss.colorsDefinition,
-      paths.content.templates.data
+      paths.content.templates.data,
+      paths.content.docs,
     ],
     ui: false,
     ghostMode: false,

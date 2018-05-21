@@ -1,4 +1,12 @@
-/* Samples
+/* br-component
+   ========================================================================== */
+
+.br-component-header {
+  font-size: 2.4rem*$br-base-size-multiplier;
+  font-weight: $br-heading-font-weight;
+}
+
+/* br-sample
    ========================================================================== */
 
 .br-sample-clearfix:before,
@@ -15,10 +23,10 @@
   background: #FFF;
   border: 1px solid #CDCDCD;
   display: inline-block;
-  padding: 5px 8px;
-  border-radius: 4px;
-  margin: 0 0 10px;
-  font-size: 12px;
+  padding: 0.5rem*$br-base-size-multiplier 0.8rem*$br-base-size-multiplier;
+  border-radius: 0.4rem*$br-base-size-multiplier;
+  margin: 0 0 1rem*$br-base-size-multiplier;
+  font-size: 1.2rem*$br-base-size-multiplier;
   &:hover {
     background: #FFF;
   }
@@ -30,31 +38,34 @@
 
 .br-sample-copy-code-btn {
   position: absolute;
-  z-index: 2;
-  top: 50px;
-  right: 10px;
+  z-index: 3;
+  top: 5.5rem*$br-base-size-multiplier;
+  right: 1rem*$br-base-size-multiplier;
+  display: none;
+  .br-sample-code:hover & {
+    display: block;
+  }
 }
 
 .br-sample-markup {
-  font-size: 11px;
+  font-size: 1.1rem*$br-base-size-multiplier;
   background: #EEE;
   border: 1px solid #DDD;
-  padding: 10px;
+  padding: 1rem*$br-base-size-multiplier;
   position: relative;
-  z-index: -1;
   .CodeMirror {
-    width: 80%;
     background: transparent;
   }
 }
 
 .br-sample-content {
-  padding: 30px;
-  border: 1px solid #DDD;
-  margin: 0 0 10px;
   background: #FFF;
+  padding: 3rem*$br-base-size-multiplier;
+  border: 1px solid #DDD;
+  margin: 0 0 1rem*$br-base-size-multiplier;
   position: relative;
   overflow: hidden;
+  resize: vertical;
 }
 
 .br-sample-content-is-layout {
@@ -64,20 +75,119 @@
 .br-sample-header .br-sample-header-link {
   float: right;
   color: rgba(0,0,0,0.45);
-  font-size: 16px;
-  margin: 10px 0;
-  padding: 0 2px 0 0;
+  .br-styleguide--dark & {
+    color: rgba(#FFF,0.45);
+  }
+  font-size: 1.6rem*$br-base-size-multiplier;
+  margin: 1rem*$br-base-size-multiplier 0;
+  padding: 0 0.2rem*$br-base-size-multiplier 0 0;
+}
+
+.br-sample-documentation {
+  padding: 0 0 1.2rem*$br-base-size-multiplier;
+
+  &:empty {
+    display: none;
+  }
+
+  p {
+    &:only-child,
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  ol,
+  ul {
+    counter-reset: list;
+    padding-left: 2.4rem*$br-base-size-multiplier;
+  }
+
+  li {
+    position: relative;
+  }
+
+  ol li:before {
+    counter-increment: list;
+    content: counter(list) '.';
+    left: -2rem*$br-base-size-multiplier;
+    position: absolute;
+  }
+
+  ul li:before {
+    content: '•';
+    left: -1.6rem*$br-base-size-multiplier;
+    position: absolute;
+  }
+
+  // Spacing between elements
+
+  p + p,
+  ul + ul,
+  ol + ol,
+  p + ul,
+  p + ol,
+  ul + p,
+  ul + ol,
+  ol + p,
+  ol + ul {
+    margin-top: 1.6rem*$br-base-size-multiplier;
+  }
 }
 
 .br-sample-header .br-sample-heading {
   float: left;
-  font-size: 16px;
-  margin: 10px 0;
+  font-size: 1.6rem*$br-base-size-multiplier;
+  font-weight: $br-heading-font-weight;
+  margin: 1rem*$br-base-size-multiplier 0;
   padding: 0;
+  color: $br-color-headings;
+  .br-styleguide--dark & {
+    color: $br-color-headings-dark;
+  }
 }
 
-#icons .br-sample-content {
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
-  column-count: 3;
+#icon-docs .br-sample-content {
+  column-count: 4;
+  > div {
+    display: flex;
+    .#{$br-svg-icon-class-prefix}, .o-svg-icon {
+      flex-basis: 20%;
+    }
+    code {
+      flex-basis: 80%;
+    }
+  }
 }
+
+
+/* Sample in dark Bedrock UI variant
+   ========================================================================== */
+
+html.br-styleguide--dark body {
+
+  .br-sample-btn {
+    background: rgba(#FFF,0.1);
+    border-color: rgba(#FFF,0.2);
+    color: $br-color-headings-dark;
+    &:hover {
+      background: rgba(#FFF,0.3);
+    }
+  }
+
+  .br-sample-markup {
+    background: rgba(#FFF,0.1);
+    border-color: rgba(#FFF,0.2);
+  }
+
+  .br-sample-content {
+    background: $br-background-dark;
+    border-color: rgba(#FFF,0.2);
+  }
+
+}
+
+.br-styleguide--dark .br-styleguide-container code {
+  background: rgba(#FFF, 0.2);
+}
+

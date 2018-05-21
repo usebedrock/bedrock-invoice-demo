@@ -1,0 +1,12 @@
+.br-svg-icon {
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  top: 0.3rem*$br-base-size-multiplier;
+}
+
+.br-svg-icon-sm {
+  svg {
+    width: 1.2rem*$br-base-size-multiplier;
+  }
+}

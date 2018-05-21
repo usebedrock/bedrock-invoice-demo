@@ -7,13 +7,14 @@
    ========================================================================== */
 
 $br-bordered-list-border-color:                  #DDD !default;
+$br-bordered-list-border-color-inverse:          rgba(#FFF,0.2) !default;
 
 // Padding
-$br-bordered-list-item-padding:                  4px !default;
+$br-bordered-list-item-padding:                  0.2rem*$br-base-size-multiplier !default;
 
 // Font sizes
-$br-bordered-list-font-size:                     13px  !default;
-$br-bordered-list-title-font-size:               15px  !default;
+$br-bordered-list-font-size:                     1.3rem*$br-base-size-multiplier  !default;
+$br-bordered-list-title-font-size:               1.5rem*$br-base-size-multiplier !default;
 
 // Regular colors
 
@@ -21,18 +22,24 @@ $br-bordered-list-title-font-size:               15px  !default;
    ========================================================================== */
 
 .br-bordered-list-title {
-  font-weight: 600;
+  font-weight: $br-heading-font-weight;
   padding: 0;
-  margin: 0 0 12px;
+  margin: 0 0 1.2rem*$br-base-size-multiplier;
   font-size: $br-bordered-list-title-font-size;
   padding: $br-bordered-list-item-padding;
 }
 
+.br-tree-dir-title {
+  margin: 0;
+  font-size: $br-bordered-list-font-size;
+  padding: $br-bordered-list-item-padding*2 $br-bordered-list-item-padding;
+}
+
 .br-bordered-list {
   margin: 0;
-  padding: 0 0 10px;
+  padding: 0 0 1rem*$br-base-size-multiplier;
   ul {
-    padding: 0 0 0 10px;
+    padding: 0 0 0 1rem*$br-base-size-multiplier;
   }
   li {
     display: block;
@@ -45,50 +52,24 @@ $br-bordered-list-title-font-size:               15px  !default;
     a {
       text-decoration: none;
       border-bottom: 1px solid $br-bordered-list-border-color;
+      .br-prototype-nav--dark &,
+      .br-styleguide--dark & {
+        border-color: $br-bordered-list-border-color-inverse;
+      }
     }
     a:hover {
       background: rgba(0,0,0,0.1);
+      .br-prototype-nav--dark &,
+      .br-styleguide--dark & {
+        background: rgba(255,255,255,0.1);
+      }
     }
-    ul li:last-child a {
-      border: none;
-    }
-  }
-}
-
-// Arrow styling
-
-.br-prototype-nav { // Only on side menu version
-  .br-bordered-list > li {
-    position: relative;
-    padding-left: 15px;
-  }
-  .br-bordered-list-label:before {
-    position: absolute;
-    left: 4px;
-    top: 10px;
-    content: " ";
-    width: 0; 
-    height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 6px solid #999;
-  }
-
-  .br-prototype-nav-item-is-collapsed {
-    .br-bordered-list-label:before {
-      border-top: 4px solid transparent;
-      border-bottom: 4px solid transparent;
-      border-left: 6px solid #999;
-      left: 6px;
-      top: 9px;
-    }
-    ul {
-      display: none;
-    }
-  }
-  .br-bordered-list {
-    ul {
-      padding: 0 0 0 10px;
+    a.br-bordered-list__link--active {
+      background: rgba(0,0,0,0.15);
+      .br-prototype-nav--dark &,
+      .br-styleguide--dark & {
+        background: rgba(255,255,255,0.15);
+      }
     }
   }
 }

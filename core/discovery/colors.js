@@ -3,9 +3,18 @@
 const fs = require('fs');
 const _ = require('lodash');
 const paths = require('../paths');
+const config = require('../../bedrock.config');
 
 function discover() {
+  if (!config.styleguide) {
+    return [];
+  }
+
   const CATEGORY_REGEX = /\/\*\s(.*)/g;
+
+  if (!config.styleguide.colors) {
+    return [];
+  }
 
   const scss = fs.readFileSync(paths.content.scss.colorsDefinition, 'utf-8');
   let colorCategories = [];
@@ -16,10 +25,12 @@ function discover() {
     const colorLine = scssLine.split(':');
     let colorData = null;
 
-    if (colorLine.length === 2) {
+    if (colorLine.length === 2  && !colorLine[0].startsWith('//') && !colorLine[0].startsWith('/*')) {
+      const value = colorLine[1].trim().match(/(.+);/g)[0].replace(';', '');
+
       colorData = {
         name: colorLine[0].trim(),
-        value: colorLine[1].trim().replace(';', '')
+        value
       };
     }
 

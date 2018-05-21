@@ -1,14 +1,17 @@
+'use strict';
+
 const path = require('path');
-const config = require('./config');
+const config = require('./../bedrock.config');
 
 const contentPath = 'content/';
 const corePath = 'core/';
+const compiledPath = 'tmp/';
 const distPath = 'dist/';
 
 module.exports = {
   content: {
     path: contentPath,
-    docs: path.join(contentPath, 'docs/**/*.md'),
+    docs: path.join(contentPath, 'docs/**/*'),
     assets: {
       images: path.join(contentPath, 'images/**/*'),
       fonts: path.join(contentPath, 'fonts/**/*'),
@@ -22,24 +25,29 @@ module.exports = {
       base: path.join(contentPath, 'scss/base/'),
       custom: path.join(contentPath, 'scss/custom/'),
       settings: path.join(contentPath, 'scss/settings/'),
-      colorsDefinition: config.styleguide.colors
+      colorsDefinition: config.styleguide ? config.styleguide.colors : null,
     },
     templates: {
       path: path.join(contentPath, 'templates/'),
       modulesPath: path.join(contentPath, 'templates/modules/'),
-      all: path.join(contentPath, 'templates/**/*.jade'),
-      baseTemplates: path.join(contentPath, 'templates/*.jade'),
-      moduleTemplates: path.join(contentPath, 'templates/modules/**/*.jade'),
-      patterns: path.join(contentPath, 'templates/patterns/'),
+      all: path.join(contentPath, 'templates/**/*.pug'),
+      baseTemplates: path.join(contentPath, 'templates/*.pug'),
+      moduleTemplates: path.join(contentPath, 'templates/modules/**/*.pug'),
+      patterns: path.join(contentPath, 'templates/_patterns/'),
+      components: path.join(contentPath, 'templates/_components/'),
       data: path.join(contentPath, 'data/*')
     },
     js: {
       entryFile: path.join(contentPath, 'js/index.js')
     },
     icons: {
-      sourceDirectory: path.join(contentPath, 'icon-font-source'),
-      sourceFiles: path.join(contentPath, 'icon-font-source', '*.svg')
-    }
+      sourceDirectory: path.join(contentPath, 'icons'),
+      sourceFiles: path.join(contentPath, 'icons', '**/*.svg')
+    },
+    iconFont: {
+      sourceDirectory: path.join(contentPath, 'icon-font-source/'),
+      sourceFiles: path.join(contentPath, 'icon-font-source/*svg')
+    },
   },
   core: {
     path: corePath,
@@ -49,11 +57,25 @@ module.exports = {
     },
     templates: {
       styleguide: {
-        index: path.join(corePath, 'templates/styleguide/index.jade'),
-        doc: path.join(corePath, 'templates/styleguide/doc.jade'),
-        colors: path.join(corePath, 'templates/styleguide/colors.jade'),
-        patternGroup: path.join(corePath, 'templates/styleguide/pattern-group.jade')
+        index: path.join(corePath, 'templates/styleguide/index.pug'),
+        doc: path.join(corePath, 'templates/styleguide/doc.pug'),
+        colors: path.join(corePath, 'templates/styleguide/colors.pug'),
+        componentGroup: path.join(corePath, 'templates/styleguide/component-group.pug')
       }
+    }
+  },
+  compiled: {
+    path: compiledPath,
+    fonts: path.join(compiledPath, 'fonts/'),
+    modules: path.join(compiledPath, 'modules/'),
+    js: path.join(compiledPath, 'js/'),
+    css: path.join(compiledPath, 'css/'),
+    styleguide: path.join(compiledPath, 'styleguide/'),
+    docs: path.join(compiledPath, 'styleguide/docs/'),
+    assets: {
+      images: path.join(compiledPath, 'images/'),
+      fonts: path.join(compiledPath, 'fonts/'),
+      resources: path.join(compiledPath, 'resources/')
     }
   },
   dist: {

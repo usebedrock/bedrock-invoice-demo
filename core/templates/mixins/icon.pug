@@ -1,0 +1,7 @@
+mixin icon(name, extraClasses)
+    - var svgIconClassPrefix = config.icons && config.icons.svgIconClassPrefix || 'svg-icon'
+    
+    if extraClasses
+        div(class=`${svgIconClassPrefix} ${svgIconClassPrefix}-${name.replace('/', '-')} ${extraClasses}`)!= renderSvgIcon(name)
+    else
+        div(class=`${svgIconClassPrefix} ${svgIconClassPrefix}-${name.replace('/', '-')}`)!= renderSvgIcon(name)

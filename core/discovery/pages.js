@@ -10,9 +10,7 @@ const TEMPLATES_MODULE_DIRECTORY = paths.content.templates.modulesPath;
 
 function mapChildren(children) {
   children = children.map((obj) => {
-    obj.href = obj.path.replace('.jade', '.html');
-    obj.name = obj.name.replace('.jade', '');
-    obj.id = obj.path.replace('.jade', '');
+    obj = addPageInfo(obj);
 
     if (obj.children) {
       mapChildren(obj.children);
@@ -24,24 +22,45 @@ function mapChildren(children) {
   return _.sortBy(children, 'type');
 }
 
-function discover() {
-  const baseTree = dirTree.directoryTree(TEMPLATES_BASE_DIRECTORY, ['.jade']).children
-    .filter(obj => obj.type === 'file')
-    .map(obj => {
-      obj.href = '/' + obj.path.replace('.jade', '.html');
-      obj.name = obj.name.replace('.jade', '');
-      obj.id = obj.path.replace('.jade', '');
-      return obj;
-    })
-    .concat([{
-      path: 'styleguide.jade',
-      href: '/styleguide',
-      name: 'Styleguide'
-    }]);
+function addPageInfo(page) {
+  page.href = '/' + page.path.replace('.pug', '.html');
+  page.name = page.name.replace('.pug', '');
+  page.id = page.path.replace('.pug', '');
 
-  const modulesTree = _.chain(dirTree.directoryTree(TEMPLATES_MODULE_DIRECTORY, ['.jade']).children)
+  if (page.href === '') {
+    page.href = '/';
+  }
+
+  return page;
+}
+
+function movePageStatesToParentPage(obj, index, collection) {
+  if (!obj) {
+    return;
+  }
+
+  if (obj.name.includes('--')) {
+    const parentStateName = obj.name.split('--')[0];
+    const parentState = collection.find(obj => obj.name === parentStateName);
+
+    // Add the state to the parent page
+    if (!parentState.states) {
+      parentState.states = [obj];
+    } else {
+      parentState.states.push(obj);
+    }
+  }
+
+  if (obj.children) {
+    obj.children.forEach(movePageStatesToParentPage);
+  }
+}
+
+function discover() {
+  const pagesAndFoldersSortedByType = _.chain(dirTree.directoryTree(TEMPLATES_BASE_DIRECTORY, ['.pug']).children)
+    .filter(obj => obj.path.charAt(0) !== '_')
     .map(obj => {
-      obj.id = obj.path.replace('.jade', '');
+      obj = addPageInfo(obj);
 
       if (obj.children) {
         obj.children = mapChildren(obj.children);
@@ -50,12 +69,10 @@ function discover() {
       return obj;
     })
     .sortBy('type')
+    .forEach(movePageStatesToParentPage)
     .value();
 
-  return {
-    base: baseTree,
-    modules: modulesTree
-  };
+  return pagesAndFoldersSortedByType.filter(p => !p.path.includes('--'));
 }
 
 module.exports = {

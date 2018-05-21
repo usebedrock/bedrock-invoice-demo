@@ -1,0 +1,17 @@
+extends ../../../content/templates/_layouts/master
+
+include ../mixins/sample
+include ../mixins/color-overview
+include ../mixins/icon-overview
+
+block append pageVariables
+    - var htmlClass = config.ui && config.ui.dark ? 'br-styleguide br-styleguide--dark' : 'br-styleguide'
+
+block body
+
+    .br-styleguide-container
+        include ../includes/styleguide-nav
+
+        .br-styleguide-content
+            script.
+                window.location = "/styleguide/docs/introduction.html"

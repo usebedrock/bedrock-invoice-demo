@@ -1,80 +1,32 @@
 const gulp = require('gulp');
-const gulpJade = require('gulp-jade');
+const gulpPug = require('gulp-pug');
 const prettify = require('gulp-jsbeautifier');
 const notifier = require('node-notifier');
 const gutil = require('gulp-util');
 const rename = require('gulp-rename');
 const data = require('gulp-data');
-const gulpIf = require('gulp-if');
+const filter = require('gulp-filter');
 const path = require('path');
 const fs = require('fs');
-const jade = require('jade');
+const pug = require('pug');
+const moment = require('moment');
+const marked = require('marked');
 const del = require('del');
 const es = require('event-stream');
-const config = require('../config');
+const config = require('../../bedrock.config');
 const paths = require('../paths');
+const locals = require('../templates/locals');
+const docs = require('../discovery/docs');
 
-const options = {
-  jade: {
-    pretty: true
-  },
-  prettify: {
-    logSuccess: false,
-    indentSize: 2,
-    unformatted: ['pre', 'textarea'],
-    extraLiners: ['body']
-  }
-};
-
-function isModuleTemplate(file) {
-  return file.path.indexOf('templates/modules/') > -1;
-}
 
 function getDefaultLocals() {
-  delete require.cache[require.resolve('../discovery/pages')];
-  delete require.cache[require.resolve('../discovery/colors')];
-  delete require.cache[require.resolve('../discovery/icons')];
-  delete require.cache[require.resolve('../discovery/patterns')];
-  delete require.cache[require.resolve('../discovery/content-data')];
-  delete require.cache[require.resolve('../discovery/docs')];
+  const defaultLocals = locals.getDefaultLocals();
+  defaultLocals.docs = docs.discover();
 
-  const pages = require('../discovery/pages');
-  const colors = require('../discovery/colors');
-  const icons = require('../discovery/icons');
-  const patterns = require('../discovery/patterns');
-  const contentData = require('../discovery/content-data');
-  const docs = require('../discovery/docs');
-
-  return {
-    contentData: contentData.discover(),
-    patterns: patterns.discover(),
-    pages: pages.discover(),
-    icons: icons.discover(),
-    docs: docs.discover(),
-    config,
-    colorCategories: colors.discover(),
-    slugify(input) {
-      return input.replace(/\//g, '-');
-    },
-    render(id, language) {
-      var patternFileLocation = path.join(paths.content.templates.patterns, id + '.jade');
-      var jadeMarkup = fs.readFileSync(patternFileLocation, 'utf8');
-
-      if (!language || language === 'jade') {
-        return jadeMarkup;
-      } else if (language === 'html') {
-        return jade.compile(jadeMarkup, {
-          pretty: true,
-          basedir: 'content',
-          filename: patternFileLocation
-        })({icons: icons.discover(), config});
-      }
-    }
-  };
+  return defaultLocals;
 }
 
 module.exports = {
-  getDefaultLocals: getDefaultLocals,
   clean(done) {
     del(['./dist/**.html', './dist/modules', './dist/styleguide']).then(function () {
       done();
@@ -84,19 +36,20 @@ module.exports = {
     styleguide() {
       const defaultLocals = getDefaultLocals();
 
-      const tasks = Object.keys(defaultLocals.patterns.byGroup).map(patternGroup => {
+      const tasks = Object.keys(defaultLocals.components.byGroup).map(componentGroup => {
         return gulp.src([
-            paths.core.templates.styleguide.patternGroup
+            paths.core.templates.styleguide.componentGroup
           ])
           .pipe(data(function (file) {
             return Object.assign({}, getDefaultLocals(), {
-              patternGroup: defaultLocals.patterns.byGroup[patternGroup]
+              componentGroup: defaultLocals.components.byGroup[componentGroup],
+              pathname: file.path.replace(path.join(process.cwd(), paths.content.templates.path), '').replace('.pug', ''),
             });
           }))
-          .pipe(gulpJade(options.jade))
-          .pipe(prettify(options.prettify))
+          .pipe(gulpPug(config.pug))
+          .pipe(prettify(config.prettify))
           .pipe(rename(function (path) {
-            path.basename = patternGroup;
+            path.basename = componentGroup;
           }))
           .pipe(gulp.dest(paths.dist.styleguide));
       });
@@ -106,10 +59,12 @@ module.exports = {
             paths.core.templates.styleguide.index
           ])
           .pipe(data(function (file) {
-            return getDefaultLocals();
+            return Object.assign({}, getDefaultLocals(), {
+              pathname: file.path.replace(path.join(process.cwd(), paths.content.templates.path), '').replace('.pug', ''),
+            });
           }))
-          .pipe(gulpJade(options.jade))
-          .pipe(prettify(options.prettify))
+          .pipe(gulpPug(config.pug))
+          .pipe(prettify(config.prettify))
           .pipe(gulp.dest(paths.dist.styleguide))
       );
 
@@ -118,15 +73,16 @@ module.exports = {
     docs() {
       const defaultLocals = getDefaultLocals();
 
-      const tasks = defaultLocals.docs.map(doc => {
+      const tasks = defaultLocals.docs.allDocs.map(doc => {
         return gulp.src(paths.core.templates.styleguide.doc)
           .pipe(data(function (file) {
             return Object.assign({}, getDefaultLocals(), {
-              doc
+              doc,
+              pathname: file.path.replace(path.join(process.cwd(), paths.content.templates.path), '').replace('.pug', ''),
             });
           }))
-          .pipe(gulpJade(options.jade))
-          .pipe(prettify(options.prettify))
+          .pipe(gulpPug(config.pug))
+          .pipe(prettify(config.prettify))
           .pipe(rename(function (path) {
             path.basename = doc.attributes.filename;
           }))
@@ -136,28 +92,30 @@ module.exports = {
       return es.merge.apply(null, tasks);
     },
     content() {
-      return gulp.src([
-          paths.content.templates.baseTemplates,
-          paths.content.templates.moduleTemplates
-        ])
+      const templateFilter = filter(function (file) {
+        const folderNameInTemplates = file.path.replace(process.cwd(), '').replace('/content/templates/', '');
+        return path.parse(folderNameInTemplates).dir.charAt(0) !== '_';
+      });
+      return gulp.src(paths.content.templates.all)
+        .pipe(templateFilter)
         .pipe(data(function (file) {
           return Object.assign({}, getDefaultLocals(), {
-            filename: path.basename(file.path).replace('jade', 'html'),
-            pathname: file.path.replace(path.join(process.cwd(), paths.content.templates.path), '').replace('.jade', ''),
+            filename: path.basename(file.path).replace('pug', 'html'),
+            pathname: file.path.replace(path.join(process.cwd(), paths.content.templates.path), '').replace('.pug', ''),
           });
         }))
-        .pipe(gulpJade(options.jade))
+        .pipe(gulpPug(config.pug))
         .on('error', function (err) {
           notifier.notify({
-            title: 'Jade error',
+            title: 'Pug error',
             message: err.message
           });
           gutil.log(gutil.colors.red(err));
           gutil.beep();
           this.emit('end');
         })
-        .pipe(prettify(options.prettify))
-        .pipe(gulpIf(isModuleTemplate, gulp.dest(paths.dist.modules), gulp.dest(paths.dist.path)));
+        .pipe(prettify(config.prettify))
+        .pipe(gulp.dest(paths.dist.path));
     }
   }
 };

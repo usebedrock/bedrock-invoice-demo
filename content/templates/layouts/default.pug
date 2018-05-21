@@ -1,5 +1,3 @@
-// Default template, has navbars
-
 extends master
 
 block append pageVariables
@@ -11,7 +9,7 @@ block append pageVariables
 block body
     .bc-container.c-util-maximize-height
         if navbarTopPrimary
-            header.bc-navbar(class="#{navbarTopPrimaryClass || 'bc-navbar-medium bc-navbar-fixed-top'}", role='banner')
+            header.bc-navbar(class=navbarTopPrimaryClass||'bc-navbar-medium bc-navbar-fixed-top' role='banner')
                 block navbarTopPrimaryContent
                     .container
                         .bc-navbar-left
@@ -45,7 +43,7 @@ block body
                                                 | Sign out
 
         if navbarTopSecondary
-            header.bc-navbar(class="#{navbarTopSecondaryClass || 'bc-navbar-medium bc-navbar-fixed-top'}", role='banner')
+            header.bc-navbar(class=navbarTopSecondaryClass||'bc-navbar-medium bc-navbar-fixed-top' role='banner')
                 block navbarTopSecondaryContent
                     .container
                         .bc-navbar-left
@@ -56,13 +54,13 @@ block body
                                 // No controls by default
 
         if layoutFullscreen
-            .bc-container-content(class="#{navbarbottomprimary ? 'bc-container-content-has-navbar-bottom-primary' : ''}")
-                div(class="#{contentLayoutClass || 'bc-container-content-layout-fullscreen'}")
+            .bc-container-content(class=navbarbottomprimary?'bc-container-content-has-navbar-bottom-primary':'')
+                div(class=contentLayoutClass||'bc-container-content-layout-fullscreen')
                     block content
                         // Page content here in sub template
         else
             .bc-container-content.c-util-is-scrollable
-                div(class="#{contentLayoutClass || 'bc-container-content-layout-default'}")
+                div(class=contentLayoutClass||'bc-container-content-layout-default')
                     .container
                         block content
                             // Page content here in sub template
